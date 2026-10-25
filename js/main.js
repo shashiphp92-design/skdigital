@@ -1595,6 +1595,62 @@
         });
       });
     });
+  /* ============================================================
+     6B. BLOG CATEGORY FILTERS & LIVE SEARCH
+     ============================================================ */
+  const initBlogFilters = () => {
+    const filterBtns = document.querySelectorAll('.blog-filter-btn');
+    const cards = document.querySelectorAll('.blog-card');
+    const searchInput = document.getElementById('blogSearchInput');
+    const noResults = document.getElementById('noResultsMessage');
+
+    if (!filterBtns.length && !cards.length) return;
+
+    let currentFilter = 'all';
+
+    const applyFilters = () => {
+      const query = (searchInput ? searchInput.value : '').toLowerCase().trim();
+      let visibleCount = 0;
+
+      cards.forEach((card) => {
+        const category = card.getAttribute('data-category');
+        const title = card.querySelector('.blog-card-title')?.textContent.toLowerCase() || '';
+        const excerpt = card.querySelector('.blog-card-excerpt')?.textContent.toLowerCase() || '';
+        const matchesCategory = (currentFilter === 'all' || category === currentFilter);
+        const matchesQuery = !query || title.includes(query) || excerpt.includes(query);
+
+        if (matchesCategory && matchesQuery) {
+          card.style.display = '';
+          card.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+          card.classList.add('hidden');
+        }
+      });
+
+      if (noResults) {
+        noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+      }
+    };
+
+    filterBtns.forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        filterBtns.forEach((b) => {
+          b.classList.remove('active');
+          b.setAttribute('aria-selected', 'false');
+        });
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
+        currentFilter = btn.getAttribute('data-filter') || 'all';
+        applyFilters();
+      });
+    });
+
+    if (searchInput) {
+      searchInput.addEventListener('input', applyFilters);
+    }
   };
 
   /* ============================================================
@@ -1808,6 +1864,7 @@
     initEstimator();
     initTerminalTabs();
     initTechFilters();
+    initBlogFilters();
     initNavigation();
     initWhatsAppTriggers();
     initScrollReveal();

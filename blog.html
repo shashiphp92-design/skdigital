@@ -45,8 +45,86 @@
   <link rel="preload" href="fonts/outfit.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/plus-jakarta-sans.woff2" as="font" type="font/woff2" crossorigin>
 
-  <!-- Core Stylesheet -->
-  <link rel="stylesheet" href="css/style.css?v=4.6">
+  <!-- Core Stylesheet with Cache Busting -->
+  <link rel="stylesheet" href="css/style.css?v=5.0">
+
+  <!-- Scoped Styling for Blog Controls & Filters (Cache-Proof) -->
+  <style>
+    .blog-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      margin: 10px 0 36px 0;
+      flex-wrap: wrap;
+    }
+    .blog-filter-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .blog-filter-btn {
+      background: rgba(255, 255, 255, 0.05) !important;
+      border: 1px solid rgba(255, 255, 255, 0.12) !important;
+      color: #94a3b8 !important;
+      font-family: inherit !important;
+      font-size: 0.9rem !important;
+      font-weight: 600 !important;
+      padding: 10px 22px !important;
+      border-radius: 9999px !important;
+      cursor: pointer !important;
+      transition: all 0.25s ease !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 6px !important;
+    }
+    .blog-filter-btn:hover {
+      background: rgba(255, 255, 255, 0.1) !important;
+      color: #ffffff !important;
+      border-color: rgba(6, 182, 212, 0.5) !important;
+    }
+    .blog-filter-btn.active {
+      background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%) !important;
+      color: #ffffff !important;
+      border-color: transparent !important;
+      box-shadow: 0 4px 18px rgba(6, 182, 212, 0.45) !important;
+    }
+    .blog-search-box {
+      position: relative;
+      min-width: 280px;
+    }
+    .blog-search-box input {
+      width: 100%;
+      padding: 12px 20px 12px 44px !important;
+      background: rgba(15, 23, 42, 0.9) !important;
+      border: 1px solid rgba(255, 255, 255, 0.16) !important;
+      border-radius: 9999px !important;
+      color: #f8fafc !important;
+      font-size: 0.92rem !important;
+      font-family: inherit !important;
+      outline: none !important;
+      box-sizing: border-box !important;
+      transition: all 0.25s ease !important;
+    }
+    .blog-search-box input:focus {
+      border-color: #06b6d4 !important;
+      box-shadow: 0 0 20px rgba(6, 182, 212, 0.35) !important;
+      background: rgba(15, 23, 42, 0.98) !important;
+    }
+    .blog-search-box i {
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #64748b;
+      font-size: 0.9rem;
+      pointer-events: none;
+    }
+    .blog-card.hidden {
+      display: none !important;
+    }
+  </style>
 
   <!-- Font Awesome: Asynchronous & Non-render-blocking -->
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -327,8 +405,8 @@
   <!-- WhatsApp Floating Button -->
   <a href="https://wa.me/917986288635?text=Hi%20Shashi%2C%20I%20have%20a%20question%20about%20your%20articles." target="_blank" rel="noopener" class="wa-float" data-wa-message="Hi Shashi, I have a question about your articles." aria-label="Chat on WhatsApp"><i class="fa-brands fa-whatsapp"></i><span class="tooltip">Chat with me on WhatsApp</span></a>
 
-  <!-- Main JavaScript File -->
-  <script src="js/main.js?v=2.0" defer></script>
+  <!-- Main JavaScript File with Cache Busting -->
+  <script src="js/main.js?v=3.0" defer></script>
 
   <!-- Interactive Filter & Search Script for blog.html -->
   <script>
@@ -355,9 +433,11 @@
             const matchesQuery = !query || title.includes(query) || excerpt.includes(query);
 
             if (matchesCategory && matchesQuery) {
+              card.style.display = '';
               card.classList.remove('hidden');
               visibleCount++;
             } else {
+              card.style.display = 'none';
               card.classList.add('hidden');
             }
           });
@@ -368,14 +448,15 @@
         }
 
         filterBtns.forEach(btn => {
-          btn.addEventListener('click', function () {
+          btn.addEventListener('click', function (e) {
+            e.preventDefault();
             filterBtns.forEach(b => {
               b.classList.remove('active');
               b.setAttribute('aria-selected', 'false');
             });
             this.classList.add('active');
             this.setAttribute('aria-selected', 'true');
-            currentFilter = this.getAttribute('data-filter');
+            currentFilter = this.getAttribute('data-filter') || 'all';
             applyFilters();
           });
         });
