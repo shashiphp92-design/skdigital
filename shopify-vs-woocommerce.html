@@ -48,8 +48,47 @@
   <link rel="preload" href="fonts/outfit.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/plus-jakarta-sans.woff2" as="font" type="font/woff2" crossorigin>
 
-  <!-- Core Stylesheet -->
-  <link rel="stylesheet" href="css/style.css?v=4.6">
+  <!-- Core Stylesheet with Cache Busting -->
+  <link rel="stylesheet" href="css/style.css?v=5.0">
+
+  <!-- Scoped Mobile Responsive Styling for Featured Media (Cache-Proof) -->
+  <style>
+    .featured-media-card {
+      width: 100% !important;
+      overflow: hidden !important;
+      border-radius: 14px !important;
+      margin-bottom: 28px !important;
+    }
+    .featured-media-card picture {
+      display: block !important;
+      width: 100% !important;
+      aspect-ratio: 16 / 9 !important;
+      overflow: hidden !important;
+      background: #070a12 !important;
+    }
+    .featured-media-card img {
+      width: 100% !important;
+      height: 100% !important;
+      aspect-ratio: 16 / 9 !important;
+      object-fit: cover !important;
+      object-position: center !important;
+      display: block !important;
+    }
+    @media (max-width: 768px) {
+      .featured-media-card picture,
+      .featured-media-card img {
+        aspect-ratio: 16 / 9 !important;
+        max-height: 240px !important;
+      }
+    }
+    @media (max-width: 480px) {
+      .featured-media-card picture,
+      .featured-media-card img {
+        aspect-ratio: 16 / 9 !important;
+        max-height: 200px !important;
+      }
+    }
+  </style>
 
   <!-- Font Awesome: Asynchronous & Non-render-blocking -->
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
