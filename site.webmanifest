@@ -1,0 +1,12 @@
+{
+  "name": "Shashi Kumar – Full-Stack Web Developer & Consultant",
+  "short_name": "Shashi Kumar",
+  "description": "Portfolio of Shashi Kumar — Full-stack developer specializing in PHP, Laravel, WordPress, Shopify, Node.js and React.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#070a12",
+  "theme_color": "#070a12",
+  "icons": [
+    { "src": "images/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

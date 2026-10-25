@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="1" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#2563eb"/>
+      <stop offset="1" stop-color="#7c3aed"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1050" cy="80" r="260" fill="#2563eb" opacity=".18"/>
+  <circle cx="120" cy="600" r="220" fill="#7c3aed" opacity=".18"/>
+  <rect x="80" y="90" width="80" height="80" rx="18" fill="url(#accent)"/>
+  <path d="M110 115 L95 130 L110 145 M130 115 L145 130 L130 145" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="180" y="145" font-family="Inter, Arial, sans-serif" font-size="44" font-weight="800" fill="#fff">Shashi Kumar<tspan fill="#60a5fa">.dev</tspan></text>
+  <text x="80" y="290" font-family="Inter, Arial, sans-serif" font-size="64" font-weight="800" fill="#fff">Full-Stack Web</text>
+  <text x="80" y="365" font-family="Inter, Arial, sans-serif" font-size="64" font-weight="800" fill="#fff">Developer &amp; Consultant</text>
+  <text x="80" y="430" font-family="Inter, Arial, sans-serif" font-size="28" fill="#cbd5e1">PHP · Laravel · WordPress · Shopify · Node.js · React · Mobile Apps</text>
+  <rect x="80" y="490" width="420" height="64" rx="32" fill="#25d366"/>
+  <text x="290" y="532" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="700" fill="#fff">WhatsApp +91 79862 88635</text>
+  <text x="530" y="532" font-family="Inter, Arial, sans-serif" font-size="24" fill="#94a3b8">shashi.php92@gmail.com</text>
+</svg>

@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <!-- Background Gradient -->
+    <radialGradient id="bgGrad" cx="50%" cy="50%" r="65%">
+      <stop offset="0%" stop-color="#111827"/>
+      <stop offset="100%" stop-color="#060911"/>
+    </radialGradient>
+
+    <!-- Neon Cyan Gradient -->
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+
+    <!-- Neon Violet-Purple Gradient -->
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#818cf8"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+
+    <!-- Dual Glow Filter -->
+    <filter id="neonGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <linearGradient id="hexInner" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#6366f1" stop-opacity="0.6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Base Icon Plate -->
+  <rect width="128" height="128" rx="28" fill="url(#bgGrad)"/>
+  <rect width="126" height="126" x="1" y="1" rx="27" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
+
+  <!-- Left Code Bracket Chevron `<` -->
+  <path d="M 50 25 L 20 64 L 50 103 L 57 96 L 33 64 L 57 32 Z" 
+        fill="url(#cyanGrad)" 
+        filter="url(#neonGlow)"/>
+
+  <!-- Right Code Bracket Chevron `>` -->
+  <path d="M 78 25 L 108 64 L 78 103 L 71 96 L 95 64 L 71 32 Z" 
+        fill="url(#purpleGrad)" 
+        filter="url(#neonGlow)"/>
+
+  <!-- Central Outer Hexagon Frame -->
+  <polygon points="64,38 86,51 86,77 64,90 42,77 42,51" 
+           fill="url(#hexInner)" 
+           stroke="url(#cyanGrad)" 
+           stroke-width="3" 
+           stroke-linejoin="round"
+           filter="url(#neonGlow)"/>
+
+  <!-- Inner Radiant Hexagon Core -->
+  <polygon points="64,48 77,55 77,73 64,80 51,73 51,55" 
+           fill="#0b1120" 
+           stroke="#a855f7" 
+           stroke-width="2.5" 
+           stroke-linejoin="round"/>
+
+  <!-- Center Core Node Pulse -->
+  <circle cx="64" cy="64" r="5" fill="#38bdf8" filter="url(#neonGlow)"/>
+</svg>

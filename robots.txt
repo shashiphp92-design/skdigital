@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /*?*PageSpeed=
+Disallow: /tables/
+
+Sitemap: https://skdigital.cloud/sitemap.xml
