@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="referrer" content="no-referrer-when-downgrade">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-323GZ37944"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-323GZ37944');
+  </script>
+
+  <title>How to Improve Google PageSpeed and Fix LCP (2026) | SK Digital</title>
+  <meta name="description" content="Learn how to improve Google PageSpeed, diagnose poor Largest Contentful Paint (LCP), eliminate render-blocking CSS/JS, and pass Core Web Vitals for higher SEO rankings.">
+  <meta name="keywords" content="how to improve Google PageSpeed, what is largest contentful paint, website speed and seo rankings, Google PageSpeed 90+ score, Core Web Vitals optimization guide, how to fix poor LCP score, eliminate render-blocking resources, server response time TTFB">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <link rel="canonical" href="https://skdigital.cloud/how-to-improve-google-pagespeed-lcp.html">
+  <meta name="theme-color" content="#070a12">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://skdigital.cloud/how-to-improve-google-pagespeed-lcp.html">
+  <meta property="og:title" content="How to Improve Google PageSpeed and Fix LCP (2026) | SK Digital">
+  <meta property="og:description" content="A comprehensive developer guide to improving Google PageSpeed, fixing Largest Contentful Paint (LCP), reducing TTFB, and passing Core Web Vitals.">
+  <meta property="og:image" content="https://skdigital.cloud/images/service-speed-optimization.jpg">
+  <meta property="article:published_time" content="2026-11-14T14:00:00+05:30">
+  <meta property="article:author" content="Shashi Kumar">
+  <meta property="article:section" content="Website Optimization & SEO">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://skdigital.cloud/how-to-improve-google-pagespeed-lcp.html">
+  <meta name="twitter:title" content="How to Improve Google PageSpeed and Fix LCP (2026) | SK Digital">
+  <meta name="twitter:description" content="A comprehensive developer guide to improving Google PageSpeed, fixing Largest Contentful Paint (LCP), reducing TTFB, and passing Core Web Vitals.">
+  <meta name="twitter:image" content="https://skdigital.cloud/images/service-speed-optimization.jpg">
+
+  <!-- Favicons -->
+  <link rel="icon" href="images/favicon.svg?v=2" type="image/svg+xml">
+  <link rel="icon" href="images/favicon-32.png?v=2" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png?v=2">
+
+  <!-- Preload Critical Local Fonts -->
+  <link rel="preload" href="fonts/outfit.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/plus-jakarta-sans.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Core Stylesheet with Cache Busting -->
+  <link rel="stylesheet" href="css/style.css?v=5.0">
+
+  <!-- Scoped Styling for Featured Media -->
+  <style>
+    .featured-media-card {
+      width: 100% !important;
+      overflow: hidden !important;
+      border-radius: 14px !important;
+      margin-bottom: 28px !important;
+    }
+    .featured-media-card picture {
+      display: block !important;
+      width: 100% !important;
+      aspect-ratio: 16 / 9 !important;
+      overflow: hidden !important;
+      background: #070a12 !important;
+    }
+    .featured-media-card img {
+      width: 100% !important;
+      height: 100% !important;
+      aspect-ratio: 16 / 9 !important;
+      object-fit: cover !important;
+      object-position: center !important;
+      display: block !important;
+    }
+    @media (max-width: 768px) {
+      .featured-media-card picture,
+      .featured-media-card img {
+        aspect-ratio: 16 / 9 !important;
+        max-height: 240px !important;
+      }
+    }
+    @media (max-width: 480px) {
+      .featured-media-card picture,
+      .featured-media-card img {
+        aspect-ratio: 16 / 9 !important;
+        max-height: 200px !important;
+      }
+    }
+  </style>
+
+  <!-- Font Awesome -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+  </noscript>
+
+  <!-- Structured Data: JSON-LD BlogPosting + Breadcrumbs + FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "headline": "How to Improve Google PageSpeed & Fix Largest Contentful Paint (LCP) for Higher SEO Rankings",
+        "name": "How to Improve Google PageSpeed and Fix LCP (2026) | SK Digital",
+        "description": "Learn how to improve Google PageSpeed, diagnose poor Largest Contentful Paint, remove render-blocking resources and improve Core Web Vitals.",
+        "image": "https://skdigital.cloud/images/service-speed-optimization.webp",
+        "datePublished": "2026-11-14T14:00:00+05:30",
+        "dateModified": "2026-11-14T14:00:00+05:30",
+        "author": {
+          "@type": "Person",
+          "name": "Shashi Kumar",
+          "url": "https://skdigital.cloud/about.html",
+          "jobTitle": "Performance Optimization Engineer"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "SK Digital",
+          "url": "https://skdigital.cloud/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://skdigital.cloud/images/logo.png"
+          }
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://skdigital.cloud/how-to-improve-google-pagespeed-lcp.html"
+        },
+        "keywords": [
+          "how to improve Google PageSpeed",
+          "what is largest contentful paint",
+          "website speed and seo rankings",
+          "Google PageSpeed 90+ score",
+          "Core Web Vitals optimization guide",
+          "eliminate render-blocking resources"
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://skdigital.cloud/" },
+          { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://skdigital.cloud/blog.html" },
+          { "@type": "ListItem", "position": 3, "name": "How to Improve Google PageSpeed & LCP", "item": "https://skdigital.cloud/how-to-improve-google-pagespeed-lcp.html" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is considered a good Largest Contentful Paint (LCP) time?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Google defines a good LCP score as 2.5 seconds or less for at least 75% of actual real-world page visits. Anything between 2.5s and 4.0s needs improvement, and over 4.0s is considered poor by Google's Page Experience ranking signals."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does a 90+ Google PageSpeed score guarantee higher search rankings?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No single metric guarantees #1 rankings. Google treats Core Web Vitals as a page experience tiebreaker signal. However, slow loading causes users to bounce quickly, directly harming engagement signals. A fast page combined with high-quality content and authority yields superior long-term ranking stability."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why is my hero image delaying LCP?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Common culprits include: applying loading='lazy' to above-the-fold images, serving uncompressed PNG/JPEG files instead of WebP/AVIF, rendering the image through a client-side JavaScript slider, or failing to preload it using <link rel='preload'> or fetchpriority='high'."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <!-- ================= STICKY GLASSMORPHIC NAVBAR ================= -->
+  <header class="site-header" id="site-header">
+    <div class="container nav-wrap">
+      <a href="index.html" class="logo" aria-label="SK DIGITAL — Shashi Kumar">
+        <picture>
+          <source srcset="images/logo.webp" type="image/webp">
+          <img src="images/logo.png" alt="SK Digital Logo" class="logo-img" width="40" height="40" fetchpriority="high" decoding="async">
+        </picture>
+        <div class="logo-text">
+          <span class="brand-title">SK DIGITAL <span class="logo-badge-cloud">.cloud</span></span>
+          <span class="brand-sub">Shashi Kumar</span>
+        </div>
+      </a>
+
+      <nav class="nav-menu" id="nav-menu" aria-label="Main navigation">
+        <a href="index.html#hero-section">Home</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#estimator">Estimator</a>
+        <a href="index.html#technologies">Stack</a>
+        <a href="index.html#comparison">Why Me</a>
+        <a href="about.html">About</a>
+        <a href="blog.html" class="active">Blog</a>
+        <a href="index.html#faq">FAQ</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+
+      <div class="nav-cta">
+        <a href="contact.html" class="btn btn-outline">Hire Me</a>
+        <a href="https://wa.me/917986288635?text=Hi%20Shashi%2C%20I%20read%20your%20PageSpeed%20and%20LCP%20guide." target="_blank" rel="noopener" class="btn btn-whatsapp" data-wa-message="Hi Shashi, I read your PageSpeed and LCP guide." aria-label="Chat on WhatsApp">
+          <i class="fa-brands fa-whatsapp"></i><span>WhatsApp</span>
+        </a>
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Page Hero / Article Header -->
+    <section class="page-hero">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span>/</span>
+          <a href="blog.html">Blog &amp; Knowledge Base</a>
+          <span>/</span>
+          <span>How to Improve Google PageSpeed &amp; LCP</span>
+        </nav>
+        <h1>How to Improve Google PageSpeed &amp; Fix Largest Contentful Paint (LCP)</h1>
+        <p class="lead">A complete technical optimization roadmap: diagnosing slow LCP elements, eliminating render-blocking CSS/JS, minimizing Time to First Byte (TTFB), and achieving 90+ Core Web Vitals on mobile and desktop.</p>
+
+        <div class="article-meta">
+          <span class="article-tag">Performance Engineering</span>
+          <span class="article-meta-item"><i class="fa-solid fa-user-pen"></i> By Shashi Kumar</span>
+          <span class="article-meta-item"><i class="fa-regular fa-calendar-check"></i> Updated November 2026</span>
+          <span class="article-meta-item"><i class="fa-regular fa-clock"></i> 9 Min Read</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content & Sidebar Grid -->
+    <section style="padding: 48px 0 88px;">
+      <div class="container content-grid">
+        <article class="content-main">
+
+          <!-- Featured Media Card -->
+          <figure class="featured-media-card">
+            <picture>
+              <source srcset="images/service-speed-optimization.webp" type="image/webp">
+              <img src="images/service-speed-optimization.jpg" alt="Google PageSpeed and Largest Contentful Paint optimization guide" width="1200" height="675" loading="eager" fetchpriority="high">
+            </picture>
+            <figcaption class="featured-media-caption">
+              <i class="fa-solid fa-circle-info"></i> Passing Core Web Vitals with sub-2.5 second LCP removes mobile bounce friction and boosts Google search visibility.
+            </figcaption>
+          </figure>
+
+          <!-- Introduction -->
+          <p>If your website scores in the red or orange on Google PageSpeed Insights, you are not alone. Millions of websites struggle with slow loading times, sluggish interaction responsiveness, and layout instability. However, chasing a synthetic 100/100 score in isolation is missing the point: what truly matters for your business is <strong>how quickly real visitors experience your website</strong>.</p>
+
+          <p>Central to Google’s page experience assessment is <strong>Largest Contentful Paint (LCP)</strong>, which measures how long it takes for the primary visible content on your page (such as a hero banner or main heading) to render on the screen. In this engineering guide, <strong>SK Digital</strong> breaks down exactly <strong>how to improve Google PageSpeed</strong>, eliminate render-blocking assets, and achieve sub-2.5 second LCP.</p>
+
+          <!-- Table of Contents -->
+          <div class="article-toc">
+            <div class="article-toc-title"><i class="fa-solid fa-list-check"></i> Table of Contents</div>
+            <ol class="article-toc-list">
+              <li><a href="#what-is-lcp"><i class="fa-solid fa-angle-right"></i> 1. What Is Largest Contentful Paint (LCP)?</a></li>
+              <li><a href="#core-metrics"><i class="fa-solid fa-angle-right"></i> 2. The Core Web Vitals Benchmark Hierarchy (LCP, INP, CLS)</a></li>
+              <li><a href="#step-1-diagnostics"><i class="fa-solid fa-angle-right"></i> 3. Step 1: Diagnose Real Field Data vs. Lab Data</a></li>
+              <li><a href="#step-2-identify-element"><i class="fa-solid fa-angle-right"></i> 4. Step 2: Identify Your Exact LCP Element</a></li>
+              <li><a href="#step-3-optimize-lcp-image"><i class="fa-solid fa-angle-right"></i> 5. Step 3: Optimize and Preload the LCP Image</a></li>
+              <li><a href="#step-4-render-blocking"><i class="fa-solid fa-angle-right"></i> 6. Step 4: Eliminate Render-Blocking CSS and JavaScript</a></li>
+              <li><a href="#step-5-ttfb"><i class="fa-solid fa-angle-right"></i> 7. Step 5: Reduce Server Response Time &amp; TTFB</a></li>
+              <li><a href="#step-6-inp-cls"><i class="fa-solid fa-angle-right"></i> 8. Step 6: Fix Interaction to Next Paint (INP) &amp; Layout Shifts</a></li>
+              <li><a href="#seo-impact"><i class="fa-solid fa-angle-right"></i> 9. How Website Speed Directly Influences SEO Rankings</a></li>
+              <li><a href="#faq"><i class="fa-solid fa-angle-right"></i> Frequently Asked Questions</a></li>
+            </ol>
+          </div>
+
+          <!-- Section 1 -->
+          <h2 id="what-is-lcp">1. What Is Largest Contentful Paint (LCP)?</h2>
+          <p><strong>Largest Contentful Paint (LCP)</strong> is one of Google's three core performance metrics. It tracks the point in the page load timeline when the main content block has likely rendered. On typical websites, the LCP candidate is:</p>
+          <ul class="checks">
+            <li><i class="fa-solid fa-circle-check"></i> An <code>&lt;img&gt;</code> element (such as an e-commerce product hero image or homepage background banner).</li>
+            <li><i class="fa-solid fa-circle-check"></i> An image element inside an <code>&lt;svg&gt;</code> container.</li>
+            <li><i class="fa-solid fa-circle-check"></i> A video poster image thumbnail.</li>
+            <li><i class="fa-solid fa-circle-check"></i> A large block-level text element (such as a prominent <code>&lt;h1&gt;</code> title).</li>
+          </ul>
+
+          <!-- Section 2 -->
+          <h2 id="core-metrics">2. The Core Web Vitals Benchmark Hierarchy</h2>
+          <table class="comparison-table" style="margin: 24px 0;">
+            <thead>
+              <tr>
+                <th>Core Web Vital</th>
+                <th>Target Threshold</th>
+                <th>What It Measures</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Largest Contentful Paint (LCP)</strong></td>
+                <td style="color:#10b981; font-weight:700;">&le; 2.5 seconds</td>
+                <td>Perceived visual loading speed of primary content.</td>
+              </tr>
+              <tr>
+                <td><strong>Interaction to Next Paint (INP)</strong></td>
+                <td style="color:#10b981; font-weight:700;">&lt; 200 milliseconds</td>
+                <td>Main-thread UI responsiveness to clicks, taps, and keyboard inputs.</td>
+              </tr>
+              <tr>
+                <td><strong>Cumulative Layout Shift (CLS)</strong></td>
+                <td style="color:#10b981; font-weight:700;">&lt; 0.1 score</td>
+                <td>Visual stability (preventing accidental clicks as fonts/banners load).</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- Section 3 -->
+          <h2 id="step-1-diagnostics">3. Step 1: Diagnose Real Field Data vs. Lab Data</h2>
+          <p>When running PageSpeed Insights, distinguish between:</p>
+          <ul class="checks">
+            <li><i class="fa-solid fa-circle-check"></i> <strong>Lighthouse Lab Diagnostics:</strong> A synthetic test run on an emulated mid-tier mobile phone on a throttled 4G network. Excellent for debugging issues.</li>
+            <li><i class="fa-solid fa-circle-check"></i> <strong>Chrome User Experience Report (CrUX):</strong> Aggregated field data collected from millions of real Chrome visitors over 28-day rolling periods. <em>Google’s search algorithms rank your website based on this field data.</em></li>
+          </ul>
+
+          <!-- Section 4 -->
+          <h2 id="step-2-identify-element">4. Step 2: Identify Your Exact LCP Element</h2>
+          <p>Open Chrome DevTools (&lt;kbd&gt;F12&lt;/kbd&gt;), switch to the <strong>Performance</strong> tab, and record a page reload. Expand the <strong>Timings</strong> lane and click on the <code>LCP</code> flag. DevTools will immediately highlight the exact DOM element in the viewport that triggered LCP.</p>
+
+          <!-- Section 5 -->
+          <h2 id="step-3-optimize-lcp-image">5. Step 3: Optimize and Preload the LCP Image</h2>
+          <p>If your LCP element is an image, implement these 4 developer fixes immediately:</p>
+          <div class="article-callout">
+            <div class="article-callout-header"><i class="fa-solid fa-code"></i> 1. Never Apply loading="lazy" to the LCP Element</div>
+            <p>Lazy loading tells the browser: <em>"Wait until the user scrolls near this image before downloading it."</em> Applying lazy loading to an above-the-fold hero image forces the browser to wait, artificially adding 1 to 2 seconds of delay to your LCP score!</p>
+          </div>
+          <ul class="checks">
+            <li><i class="fa-solid fa-circle-check"></i> <strong>Add <code>fetchpriority="high"</code>:</strong> Hint to the browser's preload scanner to download the hero graphic before lower-priority scripts:
+              <br><code>&lt;img src="hero.webp" fetchpriority="high" width="1200" height="675" alt="Hero"&gt;</code>
+            </li>
+            <li><i class="fa-solid fa-circle-check"></i> <strong>Preload in the <code>&lt;head&gt;</code>:</strong> For background images declared in CSS, add:
+              <br><code>&lt;link rel="preload" href="hero.webp" as="image" type="image/webp"&gt;</code>
+            </li>
+            <li><i class="fa-solid fa-circle-check"></i> <strong>Convert to WebP or AVIF:</strong> Shrinks image file sizes by 35%–70% compared to legacy PNG/JPEG with zero perceptual loss in clarity.</li>
+          </ul>
+
+          <!-- Section 6 -->
+          <h2 id="step-4-render-blocking">6. Step 4: Eliminate Render-Blocking CSS and JavaScript</h2>
+          <p>When the browser encounters a <code>&lt;script src="..."&gt;</code> tag without <code>defer</code> or <code>async</code>, it stops rendering HTML completely until that file is downloaded and executed. To fix this:</p>
+          <ul class="checks">
+            <li><i class="fa-solid fa-circle-check"></i> <strong>Apply <code>defer</code> to non-critical scripts:</strong> Allows HTML parsing to proceed uninterrupted.</li>
+            <li><i class="fa-solid fa-circle-check"></i> <strong>Inline Critical Above-the-Fold CSS:</strong> Extract styles required for the hero section into the <code>&lt;head&gt;</code>, deferring secondary styles asynchronously.</li>
+            <li><i class="fa-solid fa-circle-check"></i> <strong>Purge Unused CSS &amp; JS Bundles:</strong> Strip out unused components from frameworks like Bootstrap, Tailwind, or complex slider libraries.</li>
+          </ul>
+
+          <!-- Section 7 -->
+          <h2 id="step-5-ttfb">7. Step 5: Reduce Server Response Time &amp; TTFB</h2>
+          <p><strong>Time to First Byte (TTFB)</strong> measures the delay between a visitor requesting a page and receiving the first byte of data from the web server. If your TTFB exceeds 800ms, your LCP can never be under 2.5 seconds. Optimize TTFB by:</p>
+          <ul class="checks">
+            <li><i class="fa-solid fa-circle-check"></i> Implementing Redis or Memcached server-side object caching.</li>
+            <li><i class="fa-solid fa-circle-check"></i> Upgrading to PHP 8.3 with OPcache enabled.</li>
+            <li><i class="fa-solid fa-circle-check"></i> Deploying an Edge CDN (such as Cloudflare) to serve cached HTML from global server locations closest to the user.</li>
+          </ul>
+
+          <!-- Section 8 -->
+          <h2 id="step-6-inp-cls">8. Step 6: Fix Interaction to Next Paint (INP) &amp; Layout Shifts</h2>
+          <p>INP replaced FID (First Input Delay) as a mandatory Core Web Vital. It tracks how quickly the browser paints a response frame after a user taps a mobile menu or submits a form. Break up long JavaScript tasks into smaller chunks (&lt;50ms) using <code>requestIdleCallback()</code> or <code>setTimeout()</code>. Prevent layout shifts (CLS) by giving all images and video embeds explicit <code>width</code> and <code>height</code> attributes.</p>
+
+          <!-- Section 9 -->
+          <h2 id="seo-impact">9. How Website Speed Directly Influences SEO Rankings</h2>
+          <p>Google officially incorporates Core Web Vitals into its Search Ranking systems as part of the <strong>Page Experience</strong> signal. When two websites have equally relevant content on a topic, Google's algorithms favor the site that provides a smooth, sub-second user experience. Furthermore, fast load times decrease crawl latency, allowing Googlebot to index more pages across your site efficiently.</p>
+
+          <!-- Interactive Calculator Callout -->
+          <div class="article-callout" style="margin-top: 36px;">
+            <div class="article-callout-header"><i class="fa-solid fa-calculator"></i> Want Guaranteed 90+ PageSpeed for Your Website?</div>
+            <p>At SK Digital, we offer end-to-end performance optimization with a 90+ Core Web Vitals SLA. Prices start at ₹8,000 ($100). Calculate your project scope in seconds.</p>
+            <p class="mt-2"><a href="index.html#estimator" class="btn btn-primary"><i class="fa-solid fa-sliders"></i> Open Cost Estimator</a></p>
+          </div>
+
+          <!-- Author Bio Card -->
+          <div class="article-author-card">
+            <div class="article-author-avatar">
+              <i class="fa-solid fa-user-tie"></i>
+            </div>
+            <div class="article-author-info">
+              <h4>Written by Shashi Kumar</h4>
+              <span class="role">Founder &amp; Performance Engineering Specialist at SK Digital</span>
+              <p>With 8+ years of expertise in web performance profiling, server tuning, Redis caching, and front-end optimization across WordPress, Shopify, Laravel, and React, Shashi helps businesses achieve 90+ Google PageSpeed scores worldwide.</p>
+              <div class="article-author-links">
+                <a href="about.html"><i class="fa-solid fa-id-card"></i> View Full Bio</a>
+                <a href="https://wa.me/917986288635?text=Hi%20Shashi%2C%20I%20want%20to%20optimize%20my%20website%20PageSpeed." target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</a>
+                <a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact Shashi</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ Section -->
+          <h2 id="faq">Frequently Asked Questions</h2>
+          <div class="faq-list">
+            <details class="faq-item">
+              <summary>What is considered a good Largest Contentful Paint (LCP) time? <i class="fa-solid fa-chevron-down"></i></summary>
+              <div class="faq-body">Google defines a good LCP score as 2.5 seconds or less for at least 75% of actual real-world page visits. Anything between 2.5s and 4.0s needs improvement, and over 4.0s is considered poor by Google's Page Experience ranking signals.</div>
+            </details>
+
+            <details class="faq-item">
+              <summary>Does a 90+ Google PageSpeed score guarantee higher search rankings? <i class="fa-solid fa-chevron-down"></i></summary>
+              <div class="faq-body">No single metric guarantees #1 rankings. Google treats Core Web Vitals as a page experience tiebreaker signal. However, slow loading causes users to bounce quickly, directly harming engagement signals. A fast page combined with high-quality content and authority yields superior long-term ranking stability.</div>
+            </details>
+
+            <details class="faq-item">
+              <summary>Why is my hero image delaying LCP? <i class="fa-solid fa-chevron-down"></i></summary>
+              <div class="faq-body">Common culprits include: applying loading="lazy" to above-the-fold images, serving uncompressed PNG/JPEG files instead of WebP/AVIF, rendering the image through a client-side JavaScript slider, or failing to preload it using &lt;link rel="preload"&gt; or fetchpriority="high".</div>
+            </details>
+          </div>
+
+        </article>
+
+        <!-- Sticky Sidebar -->
+        <aside class="sidebar">
+          <div class="sidebar-card dark">
+            <h3>Get a 90+ PageSpeed SLA</h3>
+            <p>Transform your slow website into a high-performance platform. Discuss your site directly with senior engineer Shashi Kumar.</p>
+            <a href="https://wa.me/917986288635?text=Hi%20Shashi%2C%20I%20need%20help%20optimizing%20my%20PageSpeed." target="_blank" rel="noopener" class="btn btn-whatsapp btn-block" data-wa-message="Hi Shashi, I need help optimizing my PageSpeed."><i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</a>
+            <a href="contact.html" class="btn btn-outline-light btn-block"><i class="fa-solid fa-paper-plane"></i> Request Speed Audit</a>
+          </div>
+
+          <div class="sidebar-card">
+            <h3>Interactive Calculator</h3>
+            <p>Estimate speed optimization pricing and timelines in 30 seconds.</p>
+            <a href="index.html#estimator" class="btn btn-outline btn-block"><i class="fa-solid fa-sliders"></i> Open Cost Estimator</a>
+          </div>
+
+          <div class="sidebar-card">
+            <h3>Related Services</h3>
+            <ul>
+              <li><a href="website-optimization.html"><i class="fa-solid fa-gauge-high"></i> Speed Optimization Service</a></li>
+              <li><a href="shopify-speed-optimization-guide.html"><i class="fa-solid fa-bag-shopping"></i> Shopify Speed Guide</a></li>
+              <li><a href="website-audit.html"><i class="fa-solid fa-chart-line"></i> Technical UX Audit</a></li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Global CTA Band -->
+    <section class="cta-band">
+      <div class="container">
+        <h2>Ready for a Blazing Fast Website That Passes Core Web Vitals?</h2>
+        <p>Book a direct technical audit and optimization roadmap with senior engineer Shashi Kumar.</p>
+        <div class="actions">
+          <a href="https://wa.me/917986288635?text=Hi%20Shashi%2C%20I%20want%20to%20speed%20up%20my%20website." target="_blank" rel="noopener" class="btn btn-primary btn-lg" data-wa-message="Hi Shashi, I want to speed up my website."><i class="fa-brands fa-whatsapp"></i> +91 79862 88635</a>
+          <a href="contact.html" class="btn btn-outline-light btn-lg"><i class="fa-solid fa-paper-plane"></i> Request Optimization Scope</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="logo" aria-label="SK Digital — Shashi Kumar">
+            <picture><source srcset="images/logo.webp" type="image/webp"><img src="images/logo.png" alt="SK Digital Logo" class="logo-img" width="40" height="40" loading="lazy" decoding="async"></picture>
+            <div class="logo-text">
+              <span class="brand-title">SK DIGITAL <span class="logo-badge-cloud">.cloud</span></span>
+              <span class="brand-sub">Shashi Kumar</span>
+            </div>
+          </a>
+          <p>Professional website design &amp; development, testing, bug fixing, optimization and maintenance services. Expert in PHP, Laravel, WordPress, Shopify, Node.js &amp; React.</p>
+        </div>
+        <nav aria-label="Footer services"><h4>Services</h4><ul>
+          <li><a href="website-development.html">Website Development</a></li>
+          <li><a href="website-optimization.html">Website Optimization</a></li>
+          <li><a href="website-bug-fixing.html">Website Bug Fixing</a></li>
+          <li><a href="website-maintenance.html">Website Maintenance</a></li>
+          <li><a href="software-testing.html">Software Testing</a></li>
+          <li><a href="mobile-app-development.html">Mobile App Development</a></li>
+          <li><a href="website-audit.html">UX/UI Audit Report</a></li>
+        </ul></nav>
+        <nav aria-label="Quick links"><h4>Quick Links</h4><ul>
+          <li><a href="about.html">About Me</a></li>
+          <li><a href="blog.html">Blog &amp; Knowledge Base</a></li>
+          <li><a href="index.html#technologies">Technologies</a></li>
+          <li><a href="index.html#estimator">Cost Estimator</a></li>
+          <li><a href="index.html#faq">FAQ</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        </ul></nav>
+        <div><h4>Contact</h4><ul class="contact-list">
+          <li><i class="fa-brands fa-whatsapp"></i><a href="https://wa.me/917986288635?text=Hi%20Shashi%2C%20I" target="_blank" rel="noopener" data-wa-message="Hi Shashi, I'd like to discuss a project.">+91 79862 88635</a></li>
+          <li><i class="fa-solid fa-envelope"></i><a href="mailto:shashi.php92@gmail.com">shashi.php92@gmail.com</a></li>
+          <li><i class="fa-brands fa-google"></i><a href="https://share.google/NuBXei5OWI2OQHSFN" target="_blank" rel="noopener noreferrer">Google Business Profile (5.0 ★)</a></li>
+          <li><i class="fa-solid fa-location-dot"></i><span>India · Serving clients worldwide</span></li>
+          <li><i class="fa-solid fa-clock"></i><span>Mon - Sun: 10:00 AM – 10:00 PM IST</span></li>
+        </ul></div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year>2026</span> Shashi Kumar. All rights reserved.</span>
+        <span><a href="privacy-policy.html">Privacy Policy</a> · <a href="sitemap.xml">Sitemap</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/917986288635?text=Hi%20Shashi%2C%20I%20have%20a%20question%20about%20website%20speed." target="_blank" rel="noopener" class="wa-float" data-wa-message="Hi Shashi, I have a question about website speed." aria-label="Chat on WhatsApp"><i class="fa-brands fa-whatsapp"></i><span class="tooltip">Chat with me on WhatsApp</span></a>
+  <script src="js/main.js?v=3.0" defer></script>
+</body>
+</html>
