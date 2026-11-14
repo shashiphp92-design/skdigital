@@ -14,15 +14,6 @@
       <stop offset="55%" stop-color="#1296F5" />
       <stop offset="100%" stop-color="#7A4DF2" />
     </linearGradient>
-
-    <!-- Soft Cyan-Blue Glow Filter for Data Pulses and Active Nodes -->
-    <filter id="sk-pulse-glow" x="-35%" y="-35%" width="170%" height="170%">
-      <feGaussianBlur stdDeviation="3.2" result="blur" />
-      <feMerge>
-        <feMergeNode in="blur" />
-        <feMergeNode in="SourceGraphic" />
-      </feMerge>
-    </filter>
   </defs>
 
   <style type="text/css"><![CDATA[
@@ -157,7 +148,6 @@
       100% {
         transform: scale(1.26);
         opacity: 1;
-        filter: brightness(1.18);
       }
     }
 
@@ -169,7 +159,6 @@
       100% {
         transform: scale(1.34);
         opacity: 1;
-        filter: brightness(1.2);
       }
     }
 
@@ -195,8 +184,8 @@
     }
 
     @keyframes sk-breathe {
-      0% { transform: scale(1); filter: brightness(1); }
-      100% { transform: scale(1.16); filter: brightness(1.25); }
+      0% { transform: scale(1); opacity: 0.85; }
+      100% { transform: scale(1.16); opacity: 1; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -231,7 +220,7 @@
 
     <!-- Glowing Data Pulse on Top Peak -->
     <path class="data-pulse-top" fill="none" stroke="#99FFF5" stroke-width="4"
-      stroke-linecap="round" stroke-linejoin="round" filter="url(#sk-pulse-glow)"
+      stroke-linecap="round" stroke-linejoin="round"
       d="M 162 135 L 204 94 L 249 134" />
 
     <!-- Top Peak Nodes -->
@@ -271,7 +260,6 @@
 
     <!-- Animated Data Pulse traveling through "S" -->
     <path class="data-pulse-s" fill="none" stroke="#99FFF5" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"
-      filter="url(#sk-pulse-glow)"
       d="M 156 144 L 132 144 C 109 144 97 155 97 171 C 97 187 109 197 132 197 L 146 197 C 170 197 182 209 182 226 C 182 243 170 255 146 255 L 106 255" />
 
     <!-- Terminal Rings on "S" Circuit -->
@@ -304,7 +292,6 @@
 
     <!-- Animated Data Pulse traveling through "K" -->
     <path class="data-pulse-k" fill="none" stroke="#99FFF5" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"
-      filter="url(#sk-pulse-glow)"
       d="M 286 149 L 241 197 L 286 249" />
 
     <!-- Terminal Rings on "K" -->
