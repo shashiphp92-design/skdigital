@@ -55,16 +55,62 @@
   <!-- Core Stylesheet with Cache Busting -->
   <link rel="stylesheet" href="css/style.css?v=5.0">
 
-  <!-- Scoped Cache-Proof Styling for Blog Grid and Responsive Contact Form -->
+  <!-- Scoped Cache-Proof Styling for Blog Slider and Responsive Contact Form -->
   <style>
-    .blog-card-grid {
-      display: grid !important;
-      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-      gap: 32px !important;
+    /* ================= HOME BLOG SLIDER STYLES ================= */
+    .blog-slider-wrap {
+      position: relative !important;
       width: 100% !important;
-      margin-top: 36px !important;
+      margin-top: 16px !important;
     }
-    .blog-card {
+    .blog-slider-controls {
+      display: flex !important;
+      align-items: center !important;
+      gap: 10px !important;
+    }
+    .blog-slider-btn {
+      width: 44px !important;
+      height: 44px !important;
+      border-radius: 50% !important;
+      background: rgba(255, 255, 255, 0.06) !important;
+      border: 1px solid rgba(255, 255, 255, 0.15) !important;
+      color: #ffffff !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      cursor: pointer !important;
+      transition: all 0.25s ease !important;
+      font-size: 0.95rem !important;
+    }
+    .blog-slider-btn:hover {
+      background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%) !important;
+      border-color: transparent !important;
+      transform: translateY(-2px) !important;
+      box-shadow: 0 4px 16px rgba(6, 182, 212, 0.35) !important;
+    }
+    .blog-slider-btn:disabled {
+      opacity: 0.3 !important;
+      cursor: not-allowed !important;
+      transform: none !important;
+      box-shadow: none !important;
+    }
+    .blog-slider-track {
+      display: flex !important;
+      gap: 24px !important;
+      overflow-x: auto !important;
+      scroll-snap-type: x mandatory !important;
+      scroll-behavior: smooth !important;
+      -webkit-overflow-scrolling: touch !important;
+      padding: 10px 4px 18px 4px !important;
+      scrollbar-width: none !important;
+    }
+    .blog-slider-track::-webkit-scrollbar {
+      display: none !important;
+    }
+    .blog-slider-card {
+      flex: 0 0 calc((100% - 48px) / 3) !important;
+      min-width: 0 !important;
+      scroll-snap-align: start !important;
       background: rgba(15, 23, 42, 0.75) !important;
       border: 1px solid rgba(255, 255, 255, 0.08) !important;
       border-radius: 16px !important;
@@ -73,19 +119,95 @@
       flex-direction: column !important;
       box-sizing: border-box !important;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+      transition: transform 0.25s ease, border-color 0.25s ease !important;
     }
-    .blog-card-media {
+    .blog-slider-card:hover {
+      transform: translateY(-4px) !important;
+      border-color: rgba(6, 182, 212, 0.45) !important;
+    }
+    .blog-slider-card .blog-card-media {
       width: 100% !important;
       aspect-ratio: 16 / 9 !important;
       overflow: hidden !important;
       background: rgba(7, 10, 18, 0.9) !important;
     }
-    .blog-card-media img {
+    .blog-slider-card .blog-card-media img {
       width: 100% !important;
       height: 100% !important;
       aspect-ratio: 16 / 9 !important;
       object-fit: cover !important;
       display: block !important;
+    }
+    .blog-slider-card .blog-card-body {
+      padding: 22px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      flex: 1 !important;
+    }
+    .blog-slider-card .blog-card-title {
+      font-size: 1.12rem !important;
+      line-height: 1.4 !important;
+      margin: 10px 0 10px 0 !important;
+      display: -webkit-box !important;
+      -webkit-line-clamp: 2 !important;
+      -webkit-box-orient: vertical !important;
+      overflow: hidden !important;
+    }
+    .blog-slider-card .blog-card-title a {
+      color: #f8fafc !important;
+      text-decoration: none !important;
+      transition: color 0.2s ease !important;
+    }
+    .blog-slider-card .blog-card-title a:hover {
+      color: #06b6d4 !important;
+    }
+    .blog-slider-card .blog-card-excerpt {
+      font-size: 0.9rem !important;
+      line-height: 1.55 !important;
+      color: #94a3b8 !important;
+      margin-bottom: 16px !important;
+      display: -webkit-box !important;
+      -webkit-line-clamp: 3 !important;
+      -webkit-box-orient: vertical !important;
+      overflow: hidden !important;
+    }
+    .blog-slider-dots {
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+      gap: 8px !important;
+      margin-top: 12px !important;
+    }
+    .blog-dot {
+      width: 8px !important;
+      height: 8px !important;
+      border-radius: 50% !important;
+      background: rgba(255, 255, 255, 0.2) !important;
+      transition: all 0.25s ease !important;
+      cursor: pointer !important;
+      border: none !important;
+      padding: 0 !important;
+    }
+    .blog-dot.active {
+      width: 24px !important;
+      border-radius: 9999px !important;
+      background: #06b6d4 !important;
+      box-shadow: 0 0 10px rgba(6, 182, 212, 0.5) !important;
+    }
+    @media (max-width: 1024px) {
+      .blog-slider-card {
+        flex: 0 0 calc((100% - 20px) / 2) !important;
+      }
+    }
+    @media (max-width: 640px) {
+      .blog-slider-card {
+        flex: 0 0 88% !important;
+      }
+      .blog-slider-controls {
+        width: 100% !important;
+        justify-content: center !important;
+        margin-top: 10px !important;
+      }
     }
     .contact-grid {
       display: grid !important;
@@ -1580,131 +1702,213 @@
       </div>
     </section>
 
-    <!-- ================= 8. LATEST BLOG & ENGINEERING GUIDES ================= -->
-    <section id="blog" class="blog-section" style="background:#0b1120; padding:80px 0; border-top:1px solid #1e293b;">
+    <!-- ================= 8. LATEST BLOG & ENGINEERING GUIDES (SLIDER) ================= -->
+    <section id="blog" class="blog-section" style="background:#0b1120; padding:60px 0 68px; border-top:1px solid #1e293b;">
       <div class="container">
-        <div class="section-header reveal">
-          <span class="eyebrow"><i class="fa-solid fa-newspaper"></i> Knowledge Base &amp; Guides</span>
-          <h2>Latest <span class="gradient-headline">Engineering Insights</span> &amp; Cost Guides</h2>
-          <p>Actionable breakdowns on website development costs, e-commerce platforms, speed optimization, and technical architecture to help you build profitably.</p>
+        <div class="section-header reveal" style="margin-bottom:20px;">
+          <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:16px;">
+            <div style="max-width:680px;">
+              <span class="eyebrow"><i class="fa-solid fa-newspaper"></i> Knowledge Base &amp; Guides</span>
+              <h2>Latest <span class="gradient-headline">Engineering Insights</span> &amp; Cost Guides</h2>
+              <p style="margin-bottom:0;">Actionable breakdowns on website development costs, e-commerce speed, mobile architecture, and Core Web Vitals.</p>
+            </div>
+            <!-- Slider Navigation Arrows -->
+            <div class="blog-slider-controls">
+              <button type="button" class="blog-slider-btn" id="homeBlogPrev" aria-label="Previous Articles">
+                <i class="fa-solid fa-arrow-left"></i>
+              </button>
+              <button type="button" class="blog-slider-btn" id="homeBlogNext" aria-label="Next Articles">
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
         </div>
 
-        <div class="blog-card-grid">
-          <!-- Article 1: Shopify Speed Optimization Guide -->
-          <article class="blog-card reveal">
-            <div class="blog-card-media">
-              <a href="shopify-speed-optimization-guide.html" aria-label="Read Shopify Speed Optimization Guide (2026)">
-                <picture>
-                  <source srcset="images/service-speed-optimization.webp" type="image/webp">
-                  <img src="images/service-speed-optimization.jpg" alt="Shopify Speed Optimization Guide (2026)" width="600" height="338" loading="lazy">
-                </picture>
-              </a>
-            </div>
-            <div class="blog-card-body">
-              <div class="blog-card-meta">
-                <span class="blog-category-badge">E-Commerce Speed</span>
-                <span class="blog-read-time"><i class="fa-regular fa-clock"></i> 8 Min Read</span>
-              </div>
-              <h3 class="blog-card-title">
-                <a href="shopify-speed-optimization-guide.html">Shopify Speed Optimization Guide (2026): Improve Mobile &amp; Desktop Speed</a>
-              </h3>
-              <p class="blog-card-excerpt">
-                Audit app bloat, clean up orphaned Liquid code, optimize critical rendering paths, and pass Core Web Vitals to elevate checkout conversion rates.
-              </p>
-              <div class="blog-card-footer">
-                <span class="blog-card-author"><i class="fa-solid fa-user-tie"></i> Shashi Kumar</span>
-                <a href="shopify-speed-optimization-guide.html" class="blog-card-link">Read Guide <i class="fa-solid fa-arrow-right"></i></a>
-              </div>
-            </div>
-          </article>
+        <!-- Slider Carousel Container -->
+        <div class="blog-slider-wrap reveal">
+          <div class="blog-slider-track" id="homeBlogTrack" tabindex="0" aria-label="Latest engineering blog posts carousel">
 
-          <!-- Article 2: Flutter vs React Native in 2026 -->
-          <article class="blog-card reveal">
-            <div class="blog-card-media">
-              <a href="flutter-vs-react-native-2026.html" aria-label="Read Flutter vs React Native in 2026">
-                <picture>
-                  <source srcset="images/service-mobile-apps.webp" type="image/webp">
-                  <img src="images/service-mobile-apps.jpg" alt="Flutter vs React Native in 2026 Platform Comparison" width="600" height="338" loading="lazy">
-                </picture>
-              </a>
-            </div>
-            <div class="blog-card-body">
-              <div class="blog-card-meta">
-                <span class="blog-category-badge">Mobile Engineering</span>
-                <span class="blog-read-time"><i class="fa-regular fa-clock"></i> 9 Min Read</span>
+            <!-- Slide 1: Shopify Speed Optimization Guide -->
+            <article class="blog-slider-card">
+              <div class="blog-card-media">
+                <a href="shopify-speed-optimization-guide.html" aria-label="Read Shopify Speed Optimization Guide (2026)">
+                  <picture>
+                    <source srcset="images/service-speed-optimization.webp" type="image/webp">
+                    <img src="images/service-speed-optimization.jpg" alt="Shopify Speed Optimization Guide (2026)" width="600" height="338" loading="lazy">
+                  </picture>
+                </a>
               </div>
-              <h3 class="blog-card-title">
-                <a href="flutter-vs-react-native-2026.html">Flutter vs React Native in 2026: Architecture, Performance, and Cost</a>
-              </h3>
-              <p class="blog-card-excerpt">
-                Architectural breakdown of Impeller vs the New Architecture (TurboModules/JSI), developer velocity, and realistic MVP budgets for startups.
-              </p>
-              <div class="blog-card-footer">
-                <span class="blog-card-author"><i class="fa-solid fa-user-tie"></i> Shashi Kumar</span>
-                <a href="flutter-vs-react-native-2026.html" class="blog-card-link">Read Guide <i class="fa-solid fa-arrow-right"></i></a>
+              <div class="blog-card-body">
+                <div class="blog-card-meta">
+                  <span class="blog-category-badge">E-Commerce Speed</span>
+                  <span class="blog-read-time"><i class="fa-regular fa-clock"></i> 8 Min Read</span>
+                </div>
+                <h3 class="blog-card-title">
+                  <a href="shopify-speed-optimization-guide.html">Shopify Speed Optimization Guide (2026): Improve Mobile &amp; Desktop Speed</a>
+                </h3>
+                <p class="blog-card-excerpt">
+                  Audit app bloat, clean up orphaned Liquid code, optimize critical rendering paths, and pass Core Web Vitals to elevate checkout conversion rates.
+                </p>
+                <div class="blog-card-footer">
+                  <span class="blog-card-author"><i class="fa-solid fa-user-tie"></i> Shashi Kumar</span>
+                  <a href="shopify-speed-optimization-guide.html" class="blog-card-link">Read Guide <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
               </div>
-            </div>
-          </article>
+            </article>
 
-          <!-- Article 3: Custom Website vs Website Builder -->
-          <article class="blog-card reveal">
-            <div class="blog-card-media">
-              <a href="custom-website-vs-website-builder.html" aria-label="Read Custom Website vs Website Builder">
-                <picture>
-                  <source srcset="images/service-web-development.webp" type="image/webp">
-                  <img src="images/service-web-development.jpg" alt="Custom Website vs Website Builder: What Should You Choose?" width="600" height="338" loading="lazy">
-                </picture>
-              </a>
-            </div>
-            <div class="blog-card-body">
-              <div class="blog-card-meta">
-                <span class="blog-category-badge">Web Architecture</span>
-                <span class="blog-read-time"><i class="fa-regular fa-clock"></i> 8 Min Read</span>
+            <!-- Slide 2: Flutter vs React Native in 2026 -->
+            <article class="blog-slider-card">
+              <div class="blog-card-media">
+                <a href="flutter-vs-react-native-2026.html" aria-label="Read Flutter vs React Native in 2026">
+                  <picture>
+                    <source srcset="images/service-mobile-apps.webp" type="image/webp">
+                    <img src="images/service-mobile-apps.jpg" alt="Flutter vs React Native in 2026 Platform Comparison" width="600" height="338" loading="lazy">
+                  </picture>
+                </a>
               </div>
-              <h3 class="blog-card-title">
-                <a href="custom-website-vs-website-builder.html">Custom Website vs Website Builder: Which Is Right for Your Business?</a>
-              </h3>
-              <p class="blog-card-excerpt">
-                Comparing custom code against Wix, Squarespace, and Shopify: total cost of ownership, SEO freedom, and 100% intellectual property ownership.
-              </p>
-              <div class="blog-card-footer">
-                <span class="blog-card-author"><i class="fa-solid fa-user-tie"></i> Shashi Kumar</span>
-                <a href="custom-website-vs-website-builder.html" class="blog-card-link">Read Guide <i class="fa-solid fa-arrow-right"></i></a>
+              <div class="blog-card-body">
+                <div class="blog-card-meta">
+                  <span class="blog-category-badge">Mobile Engineering</span>
+                  <span class="blog-read-time"><i class="fa-regular fa-clock"></i> 9 Min Read</span>
+                </div>
+                <h3 class="blog-card-title">
+                  <a href="flutter-vs-react-native-2026.html">Flutter vs React Native in 2026: Architecture, Performance, and Cost</a>
+                </h3>
+                <p class="blog-card-excerpt">
+                  Architectural breakdown of Impeller vs the New Architecture (TurboModules/JSI), developer velocity, and realistic MVP budgets for startups.
+                </p>
+                <div class="blog-card-footer">
+                  <span class="blog-card-author"><i class="fa-solid fa-user-tie"></i> Shashi Kumar</span>
+                  <a href="flutter-vs-react-native-2026.html" class="blog-card-link">Read Guide <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
               </div>
-            </div>
-          </article>
+            </article>
 
-          <!-- Article 4: Small Business Website Cost -->
-          <article class="blog-card reveal">
-            <div class="blog-card-media">
-              <a href="small-business-website-cost.html" aria-label="Read How Much Does a Small Business Website Cost in 2026?">
-                <picture>
-                  <source srcset="images/small-business-website-cost.webp" type="image/webp">
-                  <img src="images/small-business-website-cost.jpg" alt="How Much Does a Small Business Website Cost in 2026?" width="600" height="338" loading="lazy">
-                </picture>
-              </a>
-            </div>
-            <div class="blog-card-body">
-              <div class="blog-card-meta">
-                <span class="blog-category-badge">Web Development</span>
-                <span class="blog-read-time"><i class="fa-regular fa-clock"></i> 8 Min Read</span>
+            <!-- Slide 3: Custom Website vs Website Builder -->
+            <article class="blog-slider-card">
+              <div class="blog-card-media">
+                <a href="custom-website-vs-website-builder.html" aria-label="Read Custom Website vs Website Builder">
+                  <picture>
+                    <source srcset="images/service-web-development.webp" type="image/webp">
+                    <img src="images/service-web-development.jpg" alt="Custom Website vs Website Builder: What Should You Choose?" width="600" height="338" loading="lazy">
+                  </picture>
+                </a>
               </div>
-              <h3 class="blog-card-title">
-                <a href="small-business-website-cost.html">How Much Does a Small Business Website Cost in 2026?</a>
-              </h3>
-              <p class="blog-card-excerpt">
-                A transparent breakdown of website design, development, domain, hosting, maintenance, and hidden costs to help you plan an accurate project budget.
-              </p>
-              <div class="blog-card-footer">
-                <span class="blog-card-author"><i class="fa-solid fa-user-tie"></i> Shashi Kumar</span>
-                <a href="small-business-website-cost.html" class="blog-card-link">Read Guide <i class="fa-solid fa-arrow-right"></i></a>
+              <div class="blog-card-body">
+                <div class="blog-card-meta">
+                  <span class="blog-category-badge">Web Architecture</span>
+                  <span class="blog-read-time"><i class="fa-regular fa-clock"></i> 8 Min Read</span>
+                </div>
+                <h3 class="blog-card-title">
+                  <a href="custom-website-vs-website-builder.html">Custom Website vs Website Builder: Which Is Right for Your Business?</a>
+                </h3>
+                <p class="blog-card-excerpt">
+                  Comparing custom code against Wix, Squarespace, and Shopify: total cost of ownership, SEO freedom, and 100% intellectual property ownership.
+                </p>
+                <div class="blog-card-footer">
+                  <span class="blog-card-author"><i class="fa-solid fa-user-tie"></i> Shashi Kumar</span>
+                  <a href="custom-website-vs-website-builder.html" class="blog-card-link">Read Guide <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
               </div>
-            </div>
-          </article>
+            </article>
+
+            <!-- Slide 4: Freelance Senior Developer vs Web Agency -->
+            <article class="blog-slider-card">
+              <div class="blog-card-media">
+                <a href="freelance-developer-vs-web-agency.html" aria-label="Read Freelance Senior Developer vs Web Agency">
+                  <picture>
+                    <source srcset="images/service-web-development.webp" type="image/webp">
+                    <img src="images/service-web-development.jpg" alt="Freelance Developer vs Web Agency in 2026" width="600" height="338" loading="lazy">
+                  </picture>
+                </a>
+              </div>
+              <div class="blog-card-body">
+                <div class="blog-card-meta">
+                  <span class="blog-category-badge">Industry Insights</span>
+                  <span class="blog-read-time"><i class="fa-regular fa-clock"></i> 8 Min Read</span>
+                </div>
+                <h3 class="blog-card-title">
+                  <a href="freelance-developer-vs-web-agency.html">Freelance Senior Developer vs Web Agency: Cost, Quality &amp; Speed</a>
+                </h3>
+                <p class="blog-card-excerpt">
+                  Why working directly with a principal engineer delivers 3x faster turnarounds, direct WhatsApp communication, and zero corporate overhead markups.
+                </p>
+                <div class="blog-card-footer">
+                  <span class="blog-card-author"><i class="fa-solid fa-user-tie"></i> Shashi Kumar</span>
+                  <a href="freelance-developer-vs-web-agency.html" class="blog-card-link">Read Guide <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Slide 5: How to Improve Google PageSpeed & LCP -->
+            <article class="blog-slider-card">
+              <div class="blog-card-media">
+                <a href="how-to-improve-google-pagespeed-lcp.html" aria-label="Read How to Improve Google PageSpeed and Fix LCP">
+                  <picture>
+                    <source srcset="images/service-speed-optimization.webp" type="image/webp">
+                    <img src="images/service-speed-optimization.jpg" alt="How to Improve Google PageSpeed and Fix LCP" width="600" height="338" loading="lazy">
+                  </picture>
+                </a>
+              </div>
+              <div class="blog-card-body">
+                <div class="blog-card-meta">
+                  <span class="blog-category-badge">Performance &amp; SEO</span>
+                  <span class="blog-read-time"><i class="fa-regular fa-clock"></i> 9 Min Read</span>
+                </div>
+                <h3 class="blog-card-title">
+                  <a href="how-to-improve-google-pagespeed-lcp.html">How to Improve Google PageSpeed &amp; Fix Largest Contentful Paint (LCP)</a>
+                </h3>
+                <p class="blog-card-excerpt">
+                  Diagnose poor LCP candidates, eliminate render-blocking CSS/JS, minimize TTFB server latency, and pass Core Web Vitals on mobile and desktop.
+                </p>
+                <div class="blog-card-footer">
+                  <span class="blog-card-author"><i class="fa-solid fa-user-tie"></i> Shashi Kumar</span>
+                  <a href="how-to-improve-google-pagespeed-lcp.html" class="blog-card-link">Read Guide <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Slide 6: Small Business Website Cost -->
+            <article class="blog-slider-card">
+              <div class="blog-card-media">
+                <a href="small-business-website-cost.html" aria-label="Read How Much Does a Small Business Website Cost in 2026?">
+                  <picture>
+                    <source srcset="images/small-business-website-cost.webp" type="image/webp">
+                    <img src="images/small-business-website-cost.jpg" alt="How Much Does a Small Business Website Cost in 2026?" width="600" height="338" loading="lazy">
+                  </picture>
+                </a>
+              </div>
+              <div class="blog-card-body">
+                <div class="blog-card-meta">
+                  <span class="blog-category-badge">Web Development</span>
+                  <span class="blog-read-time"><i class="fa-regular fa-clock"></i> 8 Min Read</span>
+                </div>
+                <h3 class="blog-card-title">
+                  <a href="small-business-website-cost.html">How Much Does a Small Business Website Cost in 2026?</a>
+                </h3>
+                <p class="blog-card-excerpt">
+                  A transparent breakdown of website design, development, domain, hosting, maintenance, and hidden costs to help you plan an accurate project budget.
+                </p>
+                <div class="blog-card-footer">
+                  <span class="blog-card-author"><i class="fa-solid fa-user-tie"></i> Shashi Kumar</span>
+                  <a href="small-business-website-cost.html" class="blog-card-link">Read Guide <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+              </div>
+            </article>
+
+          </div>
+
+          <!-- Pagination Indicator Dots -->
+          <div class="blog-slider-dots" id="homeBlogDots">
+            <button class="blog-dot active" aria-label="Go to Slide 1" data-index="0"></button>
+            <button class="blog-dot" aria-label="Go to Slide 2" data-index="1"></button>
+            <button class="blog-dot" aria-label="Go to Slide 3" data-index="2"></button>
+            <button class="blog-dot" aria-label="Go to Slide 4" data-index="3"></button>
+          </div>
         </div>
 
-        <div class="text-center mt-3 reveal" style="text-align:center; margin-top:36px;">
-          <a href="blog.html" class="btn btn-outline-light btn-lg"><i class="fa-solid fa-book-open"></i> Explore All 9 Engineering Guides &amp; Insights</a>
+        <div class="text-center reveal" style="text-align:center; margin-top:28px;">
+          <a href="blog.html" class="btn btn-outline-light btn-lg"><i class="fa-solid fa-book-open"></i> Explore All 9 Engineering Guides &amp; Insights &rarr;</a>
         </div>
       </div>
     </section>
@@ -1893,5 +2097,73 @@
 
   <!-- Main JavaScript File -->
   <script src="js/main.js?v=4.5" defer></script>
+
+  <!-- Lightweight Dependency-Free Home Blog Slider Controller -->
+  <script>
+    (function () {
+      function initHomeBlogSlider() {
+        var track = document.getElementById('homeBlogTrack');
+        var prevBtn = document.getElementById('homeBlogPrev');
+        var nextBtn = document.getElementById('homeBlogNext');
+        var dotsContainer = document.getElementById('homeBlogDots');
+        if (!track || !prevBtn || !nextBtn) return;
+
+        var cards = track.querySelectorAll('.blog-slider-card');
+        if (!cards.length) return;
+
+        function getCardWidth() {
+          var card = cards[0];
+          var gap = 24;
+          return card.offsetWidth + gap;
+        }
+
+        prevBtn.addEventListener('click', function () {
+          track.scrollBy({ left: -getCardWidth(), behavior: 'smooth' });
+        });
+
+        nextBtn.addEventListener('click', function () {
+          track.scrollBy({ left: getCardWidth(), behavior: 'smooth' });
+        });
+
+        if (dotsContainer) {
+          var dots = dotsContainer.querySelectorAll('.blog-dot');
+          dots.forEach(function (dot, index) {
+            dot.addEventListener('click', function () {
+              track.scrollTo({ left: index * getCardWidth(), behavior: 'smooth' });
+            });
+          });
+        }
+
+        function updateSliderUI() {
+          var scrollLeft = track.scrollLeft;
+          var maxScroll = track.scrollWidth - track.clientWidth - 5;
+          prevBtn.disabled = scrollLeft <= 5;
+          nextBtn.disabled = scrollLeft >= maxScroll;
+
+          if (dotsContainer) {
+            var dots = dotsContainer.querySelectorAll('.blog-dot');
+            var cardWidth = getCardWidth();
+            var activeIndex = Math.min(
+              dots.length - 1,
+              Math.max(0, Math.round(scrollLeft / cardWidth))
+            );
+            dots.forEach(function (d, i) {
+              d.classList.toggle('active', i === activeIndex);
+            });
+          }
+        }
+
+        track.addEventListener('scroll', updateSliderUI, { passive: true });
+        window.addEventListener('resize', updateSliderUI, { passive: true });
+        updateSliderUI();
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initHomeBlogSlider);
+      } else {
+        initHomeBlogSlider();
+      }
+    })();
+  </script>
 </body>
 </html>
