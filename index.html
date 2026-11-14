@@ -551,7 +551,7 @@
       <nav class="nav-menu" id="nav-menu" aria-label="Main navigation">
         <a href="#hero-section">Home</a>
         <a href="#services">Services</a>
-        <a href="#estimator">Estimator</a>
+        <a href="cost-calculator.html">Cost Calculator</a>
         <a href="#technologies">Stack</a>
         <a href="#comparison">Why Me</a>
         <a href="about.html">About</a>
@@ -598,7 +598,7 @@
 
             <!-- Dual CTAs -->
             <div class="hero-actions">
-              <a href="#estimator" class="btn btn-emerald btn-lg btn-glow">
+              <a href="cost-calculator.html" class="btn btn-emerald btn-lg btn-glow">
                 <i class="fa-solid fa-calculator"></i> Calculate Project Cost (Instant Quote)
               </a>
               <a href="https://wa.me/917986288635?text=Hi%20Shashi%2C%20I%20found%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener" class="btn btn-glass-sky btn-lg" data-wa-message="Hi Shashi, I found your portfolio and would like to discuss a project.">
@@ -985,350 +985,26 @@
       </div>
     </section>
 
-    <!-- ================= 3. INTERACTIVE PROJECT ESTIMATOR & LEAD MAGNET (#F8FAFC) ================= -->
-    <section id="estimator" class="section-light">
+    <!-- ================= 3. COST CALCULATOR CALLOUT BANNER (#0F172A) ================= -->
+    <section class="section-dark calc-callout-section" style="padding: 56px 0; background: linear-gradient(180deg, #0b1120 0%, #020617 100%); border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06);">
       <div class="container">
-        <div class="section-header reveal">
-          <span class="eyebrow"><i class="fa-solid fa-calculator"></i> Transparent Cost Estimator</span>
-          <h2>Website Cost Calculator</h2>
-          <p>Get an estimated price and delivery timeline in under a minute. No obligation.</p>
-        </div>
-
-        <div class="estimator-wrapper reveal">
-          <form id="project-estimator-form" class="estimator-container" onsubmit="return false;">
-            <!-- Builder Options Column -->
-            <div class="estimator-builder-card">
-              <!-- Live Estimate Quick Bar (Prominent on Tablet & Mobile) -->
-              <div class="estimator-live-strip">
-                <div class="live-strip-info">
-                  <span class="live-strip-badge"><span class="dot"></span> Live Estimate</span>
-                  <div class="live-strip-price" id="est-strip-price">
-                    <span class="strip-inr">₹15,000 – ₹20,000</span>
-                    <span class="strip-usd">($200 – $265 USD)</span>
-                  </div>
-                </div>
-                <div class="live-strip-meta">
-                  <span class="live-strip-time" id="est-strip-timeline">⏱ 1–2 Weeks</span>
-                  <a href="#estimator-summary" class="live-strip-jump-btn">
-                    <span>View Estimate</span> <i class="fa-solid fa-arrow-down"></i>
-                  </a>
-                </div>
-              </div>
-
-              <!-- 3-Step Interactive Stepper Progress Indicator -->
-              <div class="estimator-stepper" role="tablist" aria-label="Cost Calculator Steps">
-                <button type="button" class="stepper-tab active" data-step="1" role="tab" id="calc-step-tab-1" aria-selected="true" aria-controls="calc-step-pane-1">
-                  <span class="stepper-num">1</span>
-                  <span class="stepper-meta">
-                    <span class="stepper-label">Step 1</span>
-                    <span class="stepper-title">What do you need?</span>
-                  </span>
-                </button>
-                <div class="stepper-track-divider" aria-hidden="true"></div>
-                <button type="button" class="stepper-tab" data-step="2" role="tab" id="calc-step-tab-2" aria-selected="false" aria-controls="calc-step-pane-2">
-                  <span class="stepper-num">2</span>
-                  <span class="stepper-meta">
-                    <span class="stepper-label">Step 2</span>
-                    <span class="stepper-title">Project Scope</span>
-                  </span>
-                </button>
-                <div class="stepper-track-divider" aria-hidden="true"></div>
-                <button type="button" class="stepper-tab" data-step="3" role="tab" id="calc-step-tab-3" aria-selected="false" aria-controls="calc-step-pane-3">
-                  <span class="stepper-num">3</span>
-                  <span class="stepper-meta">
-                    <span class="stepper-label">Step 3</span>
-                    <span class="stepper-title">Extras &amp; Estimate</span>
-                  </span>
-                </button>
-              </div>
-
-              <!-- STEP 1 PANE: WHAT DO YOU NEED? -->
-              <div class="calc-step-pane active" id="calc-step-pane-1" role="tabpanel" aria-labelledby="calc-step-tab-1">
-                <div class="step-pane-header">
-                  <span class="step-badge">Step 1 of 3</span>
-                  <h3>What do you need?</h3>
-                  <p class="step-desc">Select the primary service you want engineered. You'll specify details and scope in the next step.</p>
-                </div>
-
-                <div class="calc-services-grid" role="radiogroup" aria-label="Available Services">
-                  <!-- Service 1: Business Website -->
-                  <div class="calc-service-item">
-                    <input type="radio" id="srv-webdev" name="est_service" value="webdev" checked>
-                    <label for="srv-webdev" class="calc-service-card" tabindex="0">
-                      <div class="calc-card-icon"><i class="fa-solid fa-laptop-code"></i></div>
-                      <div class="calc-card-body">
-                        <h4>Business Website</h4>
-                        <p>High-converting static landing page or dynamic corporate CMS website.</p>
-                      </div>
-                      <div class="calc-card-footer">
-                        <span class="calc-card-price">From ₹5,000 ($65)</span>
-                        <span class="calc-card-check"><i class="fa-solid fa-check"></i></span>
-                      </div>
-                    </label>
-                  </div>
-
-                  <!-- Service 2: E-Commerce Store -->
-                  <div class="calc-service-item">
-                    <input type="radio" id="srv-ecom" name="est_service" value="ecommerce">
-                    <label for="srv-ecom" class="calc-service-card" tabindex="0">
-                      <div class="calc-card-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-                      <div class="calc-card-body">
-                        <h4>E-Commerce Website</h4>
-                        <p>Shopify, WooCommerce, or custom online store with cart and payments.</p>
-                      </div>
-                      <div class="calc-card-footer">
-                        <span class="calc-card-price">From ₹35,000 ($450)</span>
-                        <span class="calc-card-check"><i class="fa-solid fa-check"></i></span>
-                      </div>
-                    </label>
-                  </div>
-
-                  <!-- Service 3: Mobile App -->
-                  <div class="calc-service-item">
-                    <input type="radio" id="srv-mobile" name="est_service" value="mobile">
-                    <label for="srv-mobile" class="calc-service-card" tabindex="0">
-                      <div class="calc-card-icon"><i class="fa-solid fa-mobile-screen"></i></div>
-                      <div class="calc-card-body">
-                        <h4>Mobile App Development</h4>
-                        <p>Cross-platform iOS and Android mobile app built with Flutter or React Native.</p>
-                      </div>
-                      <div class="calc-card-footer">
-                        <span class="calc-card-price">From ₹35,000 ($450)</span>
-                        <span class="calc-card-check"><i class="fa-solid fa-check"></i></span>
-                      </div>
-                    </label>
-                  </div>
-
-                  <!-- Service 4: Speed Optimization -->
-                  <div class="calc-service-item">
-                    <input type="radio" id="srv-speed" name="est_service" value="speed">
-                    <label for="srv-speed" class="calc-service-card" tabindex="0">
-                      <div class="calc-card-icon"><i class="fa-solid fa-gauge-high"></i></div>
-                      <div class="calc-card-body">
-                        <h4>Website Speed Optimization</h4>
-                        <p>Google PageSpeed 90+ score guarantee and Core Web Vitals optimization.</p>
-                      </div>
-                      <div class="calc-card-footer">
-                        <span class="calc-card-price">From ₹8,000 ($100)</span>
-                        <span class="calc-card-check"><i class="fa-solid fa-check"></i></span>
-                      </div>
-                    </label>
-                  </div>
-
-                  <!-- Service 5: Testing / QA -->
-                  <div class="calc-service-item">
-                    <input type="radio" id="srv-qa" name="est_service" value="qa">
-                    <label for="srv-qa" class="calc-service-card" tabindex="0">
-                      <div class="calc-card-icon"><i class="fa-solid fa-vial-circle-check"></i></div>
-                      <div class="calc-card-body">
-                        <h4>Website Testing / QA</h4>
-                        <p>Automated Playwright regression testing and cross-browser QA suites.</p>
-                      </div>
-                      <div class="calc-card-footer">
-                        <span class="calc-card-price">From ₹12,000 ($150)</span>
-                        <span class="calc-card-check"><i class="fa-solid fa-check"></i></span>
-                      </div>
-                    </label>
-                  </div>
-
-                  <!-- Service 6: Bug Fixing -->
-                  <div class="calc-service-item">
-                    <input type="radio" id="srv-bugfix" name="est_service" value="bugfix">
-                    <label for="srv-bugfix" class="calc-service-card" tabindex="0">
-                      <div class="calc-card-icon"><i class="fa-solid fa-bug-slash"></i></div>
-                      <div class="calc-card-body">
-                        <h4>Bug Fixing</h4>
-                        <p>Rapid emergency diagnosis and resolution for fatal errors, crashes, and bugs.</p>
-                      </div>
-                      <div class="calc-card-footer">
-                        <span class="calc-card-price">From ₹4,999 ($65)</span>
-                        <span class="calc-card-check"><i class="fa-solid fa-check"></i></span>
-                      </div>
-                    </label>
-                  </div>
-
-                  <!-- Service 7: Website Maintenance -->
-                  <div class="calc-service-item">
-                    <input type="radio" id="srv-maintenance" name="est_service" value="maintenance">
-                    <label for="srv-maintenance" class="calc-service-card" tabindex="0">
-                      <div class="calc-card-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
-                      <div class="calc-card-body">
-                        <h4>Website Maintenance</h4>
-                        <p>Proactive care plans: backups, security patches, 24/7 uptime &amp; dev retainer.</p>
-                      </div>
-                      <div class="calc-card-footer">
-                        <span class="calc-card-price">From ₹4,999/mo ($65/mo)</span>
-                        <span class="calc-card-check"><i class="fa-solid fa-check"></i></span>
-                      </div>
-                    </label>
-                  </div>
-
-                  <!-- Service 8: Website Audit -->
-                  <div class="calc-service-item">
-                    <input type="radio" id="srv-audit" name="est_service" value="audit">
-                    <label for="srv-audit" class="calc-service-card" tabindex="0">
-                      <div class="calc-card-icon"><i class="fa-solid fa-chart-line"></i></div>
-                      <div class="calc-card-body">
-                        <h4>Website Audit</h4>
-                        <p>Forensic analysis of UI/UX friction, conversion rate (CRO), and tech stack.</p>
-                      </div>
-                      <div class="calc-card-footer">
-                        <span class="calc-card-price">From ₹7,999 ($99)</span>
-                        <span class="calc-card-check"><i class="fa-solid fa-check"></i></span>
-                      </div>
-                    </label>
-                  </div>
-                </div>
-
-                <div class="calc-step-actions">
-                  <div></div>
-                  <button type="button" class="btn btn-emerald btn-lg btn-calc-nav" data-goto-step="2">
-                    <span>Continue to Project Scope</span> <i class="fa-solid fa-arrow-right"></i>
-                  </button>
-                </div>
-              </div>
-
-              <!-- STEP 2 PANE: TELL US ABOUT YOUR PROJECT -->
-              <div class="calc-step-pane" id="calc-step-pane-2" role="tabpanel" aria-labelledby="calc-step-tab-2">
-                <div class="step-pane-header">
-                  <span class="step-badge">Step 2 of 3</span>
-                  <h3 id="step-2-service-title">Tell us about your project</h3>
-                  <p class="step-desc" id="step-2-service-subtitle">Configure the specific scope, scale, and requirements for this service.</p>
-                </div>
-
-                <!-- Dynamic Scope Questions Container (populated / toggled by selected service) -->
-                <div id="calc-dynamic-scope-wrap">
-                  <!-- Scope Questions will render here dynamically per service -->
-                </div>
-
-                <!-- Delivery Urgency (Common across services) -->
-                <div class="calc-field-group urgency-section">
-                  <div class="calc-field-label">
-                    <label>Delivery Urgency &amp; Pace</label>
-                    <span class="calc-field-hint">Select the turnaround milestone speed needed</span>
-                  </div>
-                  <div class="urgency-grid">
-                    <div class="urgency-option">
-                      <input type="radio" id="urg-std" name="est_urgency" value="standard" checked>
-                      <label for="urg-std" class="urgency-label" tabindex="0">
-                        <strong>Standard Pace</strong>
-                        <span>Balanced milestone sprint</span>
-                      </label>
-                    </div>
-                    <div class="urgency-option">
-                      <input type="radio" id="urg-pri" name="est_urgency" value="priority">
-                      <label for="urg-pri" class="urgency-label" tabindex="0">
-                        <strong>Priority Fast-Track</strong>
-                        <span>Accelerated delivery (+25%)</span>
-                      </label>
-                    </div>
-                    <div class="urgency-option">
-                      <input type="radio" id="urg-rush" name="est_urgency" value="rush">
-                      <label for="urg-rush" class="urgency-label" tabindex="0">
-                        <strong>Dedicated Rush</strong>
-                        <span>Emergency SLA sprint (+50%)</span>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="calc-step-actions">
-                  <button type="button" class="btn btn-calc-back btn-calc-nav" data-goto-step="1">
-                    <i class="fa-solid fa-arrow-left"></i> <span>Back to Services</span>
-                  </button>
-                  <button type="button" class="btn btn-emerald btn-lg btn-calc-nav" data-goto-step="3">
-                    <span>Continue to Extras &amp; Estimate</span> <i class="fa-solid fa-arrow-right"></i>
-                  </button>
-                </div>
-              </div>
-
-              <!-- STEP 3 PANE: ADDITIONAL FEATURES & ESTIMATE -->
-              <div class="calc-step-pane" id="calc-step-pane-3" role="tabpanel" aria-labelledby="calc-step-tab-3">
-                <div class="step-pane-header">
-                  <span class="step-badge">Step 3 of 3</span>
-                  <h3>Additional features and optional add-ons</h3>
-                  <p class="step-desc">Select any specialized extras for your build. Every extra is optional, transparently priced, and unchecked by default.</p>
-                </div>
-
-                <!-- Dynamic Add-ons Container (rendered strictly relevant to the active service) -->
-                <div id="calc-dynamic-addons-wrap" class="calc-addons-grid" role="group" aria-label="Optional Addons">
-                  <!-- Addons render here dynamically -->
-                </div>
-
-                <div class="calc-step-actions">
-                  <button type="button" class="btn btn-calc-back btn-calc-nav" data-goto-step="2">
-                    <i class="fa-solid fa-arrow-left"></i> <span>Back to Project Scope</span>
-                  </button>
-                  <a href="#estimator-summary" class="btn btn-emerald btn-lg mobile-only-summary-jump">
-                    <span>Review Full Quote Summary</span> <i class="fa-solid fa-arrow-down"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <!-- Sticky Live Summary Card (#0F172A Midnight Navy) -->
-            <div class="estimator-summary-card" id="estimator-summary">
-              <div class="summary-header-row">
-                <h4>Estimate Summary</h4>
-                <div class="summary-currency-toggle" role="group" aria-label="Currency Toggle">
-                  <button type="button" class="curr-pill active" data-currency="both" title="Show both INR and USD">Both</button>
-                  <button type="button" class="curr-pill" data-currency="inr" title="Show Indian Rupee">₹ INR</button>
-                  <button type="button" class="curr-pill" data-currency="usd" title="Show US Dollar">$ USD</button>
-                </div>
-              </div>
-
-              <!-- Scope breakdown details -->
-              <div class="summary-scope-details">
-                <div class="scope-detail-row">
-                  <span>Selected Service:</span>
-                  <strong id="est-scope-label">Business Website</strong>
-                </div>
-                <div class="scope-detail-row">
-                  <span>Project Scope:</span>
-                  <strong id="est-pages-summary">5 Pages (Dynamic CMS)</strong>
-                </div>
-                <div class="scope-detail-row">
-                  <span>Delivery Pace:</span>
-                  <strong id="est-urgency-summary">Standard Delivery</strong>
-                </div>
-                <div class="scope-detail-row">
-                  <span>Selected Extras:</span>
-                  <strong id="est-features-summary">None selected</strong>
-                </div>
-              </div>
-
-              <!-- Live Price Display Box -->
-              <div class="summary-price-box">
-                <span class="price-label">Estimated Investment Range</span>
-                <div class="price-display" id="est-price-range">
-                  <span class="est-inr-price">₹15,000 – ₹20,000</span>
-                  <span class="est-usd-price">($200 – $265 USD)</span>
-                </div>
-                <div class="timeline-display" id="est-timeline">⏱ Estimated Timeline: 1–2 Weeks</div>
-              </div>
-
-              <!-- Conversion CTAs -->
-              <div class="summary-actions-wrap">
-                <a id="est-wa-quote-btn" class="btn btn-emerald btn-lg btn-glow" href="https://wa.me/917986288635?text=Hello%20GenCode%20Team!%20I%20would%20like%20to%20get%20a%20quote" target="_blank" rel="noopener">
-                  <i class="fa-brands fa-whatsapp"></i> Get My Quote on WhatsApp
-                </a>
-                <button type="button" id="est-email-lock-btn" class="btn btn-glass-sky">
-                  <i class="fa-solid fa-file-invoice"></i> Request a Detailed Quote
-                </button>
-              </div>
-
-              <!-- Customer-friendly Disclaimer & Trust -->
-              <div class="summary-disclaimer">
-                <i class="fa-solid fa-circle-info"></i>
-                <span>This is an upfront preliminary estimate for standard engineering scopes. Final quotation depends on confirmed requirements, technical architecture, and third-party dependencies.</span>
-              </div>
-
-              <div class="summary-trust-line">
-                <i class="fa-solid fa-shield-halved" style="color:#10b981;"></i>
-                <span>Direct senior engineer access. 100% confidential. No obligation.</span>
-              </div>
-            </div>
-          </form>
+        <div class="calc-callout-card reveal" style="background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(6, 182, 212, 0.3); border-radius: 20px; padding: 40px; display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);">
+          <div style="max-width: 680px;">
+            <span class="eyebrow" style="color: #06b6d4; font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+              <i class="fa-solid fa-calculator"></i> Custom Project Cost Estimator
+            </span>
+            <h3 style="font-size: clamp(1.5rem, 2.8vw, 2rem); font-weight: 800; color: #ffffff; margin-bottom: 12px; font-family: var(--font-display);">
+              Calculate Your Project Scope &amp; Timeline in Under 60 Seconds
+            </h3>
+            <p style="color: #94a3b8; font-size: 1rem; line-height: 1.6; margin: 0;">
+              Need an accurate quote? Use our interactive 3-step cost calculator to configure your platform, architecture, design fidelity, and add-ons with 100% price transparency and instant WhatsApp summary generation.
+            </p>
+          </div>
+          <div style="flex-shrink: 0;">
+            <a href="cost-calculator.html" class="btn btn-emerald btn-lg btn-glow" style="padding: 18px 36px; font-size: 1.05rem; display: inline-flex; align-items: center; gap: 10px;">
+              <i class="fa-solid fa-calculator"></i> Launch Cost Calculator <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -2084,7 +1760,7 @@
           <ul>
             <li><a href="about.html">About Shashi</a></li>
             <li><a href="blog.html">Blog &amp; Knowledge Base</a></li>
-            <li><a href="#estimator">Scope Estimator</a></li>
+            <li><a href="cost-calculator.html">Cost Calculator</a></li>
             <li><a href="#pricing">Milestone Pricing</a></li>
             <li><a href="#process">How It Works</a></li>
             <li><a href="#technologies">Production Stack</a></li>

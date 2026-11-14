@@ -1510,6 +1510,17 @@
 
     // Expose calculate for external helpers
     window.recalcEstimator = calculate;
+
+    // Check URL parameters for ?service=... to auto-preselect on dedicated page
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      const sParam = urlParams.get('service');
+      if (sParam) {
+        setTimeout(() => {
+          window.preselectService(sParam);
+        }, 150);
+      }
+    } catch (e) {}
   };
 
   /* Helper to preselect service from Bento cards / navigation */
@@ -1537,17 +1548,20 @@
           }
         }, 50);
       }
-    }
 
-    // Advance to Step 2 so the user immediately sees the tailored scope questions
-    const step2Tab = document.getElementById('calc-step-tab-2');
-    if (step2Tab) {
-      step2Tab.click();
-    }
+      // Advance to Step 2 so the user immediately sees the tailored scope questions
+      const step2Tab = document.getElementById('calc-step-tab-2');
+      if (step2Tab) {
+        step2Tab.click();
+      }
 
-    const estimatorSection = document.getElementById('estimator');
-    if (estimatorSection) {
-      estimatorSection.scrollIntoView({ behavior: 'smooth' });
+      const estimatorSection = document.getElementById('estimator');
+      if (estimatorSection) {
+        estimatorSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // Form not on current page: redirect to dedicated cost-calculator page with param
+      window.location.href = `cost-calculator.html?service=${encodeURIComponent(serviceKey)}`;
     }
   };
 
