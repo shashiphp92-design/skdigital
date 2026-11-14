@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 340" width="100%" height="100%" role="img" aria-label="SK Digital Animated Logo">
+  <defs>
+    <!-- Primary Brand Gradient: Cyan (#1CF5E0) to Electric Blue (#1296F5) to Violet (#7A4DF2) -->
+    <linearGradient id="sk-brand-grad" x1="25" y1="65" x2="365" y2="275" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1CF5E0" />
+      <stop offset="52%" stop-color="#1296F5" />
+      <stop offset="100%" stop-color="#7A4DF2" />
+    </linearGradient>
+
+    <!-- Vertical Accent Gradient for Nodes and Pixels -->
+    <linearGradient id="sk-vert-grad" x1="180" y1="50" x2="290" y2="290" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1CF5E0" />
+      <stop offset="55%" stop-color="#1296F5" />
+      <stop offset="100%" stop-color="#7A4DF2" />
+    </linearGradient>
+
+    <!-- Soft Cyan-Blue Glow Filter for Data Pulses and Active Nodes -->
+    <filter id="sk-pulse-glow" x="-35%" y="-35%" width="170%" height="170%">
+      <feGaussianBlur stdDeviation="3.2" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <style type="text/css"><![CDATA[
+    /* ==========================================================================
+       1. ENTRANCE SEQUENCE (Draw-in and Pop-in)
+       ========================================================================== */
+    .cloud-left-arc {
+      stroke-dasharray: 460;
+      stroke-dashoffset: 460;
+      animation: sk-draw-arc 1.15s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    .cloud-right-arc {
+      stroke-dasharray: 185;
+      stroke-dashoffset: 185;
+      animation: sk-draw-arc 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.28s forwards;
+    }
+
+    .sk-letter-group {
+      opacity: 0;
+      transform-origin: 200px 190px;
+      animation: sk-reveal-monogram 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.22s forwards;
+    }
+
+    .circuit-trace-draw {
+      stroke-dasharray: 240;
+      stroke-dashoffset: 240;
+      animation: sk-draw-arc 0.95s cubic-bezier(0.25, 1, 0.5, 1) 0.42s forwards;
+    }
+
+    .circuit-node-pop {
+      opacity: 0;
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: sk-node-pop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) 0.65s forwards;
+    }
+
+    .pixel-cube {
+      opacity: 0;
+      transform-box: fill-box;
+      transform-origin: center;
+      animation:
+        sk-pixel-in 0.50s cubic-bezier(0.34, 1.56, 0.64, 1) var(--delay, 0.6s) forwards,
+        sk-pixel-zoom var(--dur, 2.40s) ease-in-out calc(var(--delay, 0.6s) + 0.45s) infinite alternate;
+      animation-play-state: running, running;
+    }
+
+    /* Individual bubble and micro-dot zoom-in / zoom-out pulse around each dot center */
+    .bubble-zoom {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: sk-bubble-zoom var(--dur, 2.20s) ease-in-out var(--delay, 0.95s) infinite alternate;
+      animation-play-state: running;
+    }
+
+    /* ==========================================================================
+       2. CONTINUOUS AMBIENT LOOP (Data Pulses and Node Breathing)
+       ========================================================================== */
+    .data-pulse-s {
+      stroke-dasharray: 26 240;
+      stroke-dashoffset: 266;
+      opacity: 0;
+      animation: sk-flow-s 2.80s linear 1.10s infinite;
+      animation-play-state: running;
+    }
+
+    .data-pulse-k {
+      stroke-dasharray: 22 200;
+      stroke-dashoffset: 222;
+      opacity: 0;
+      animation: sk-flow-k 2.60s linear 1.40s infinite;
+      animation-play-state: running;
+    }
+
+    .data-pulse-top {
+      stroke-dasharray: 18 145;
+      stroke-dashoffset: 163;
+      opacity: 0;
+      animation: sk-flow-top 2.40s linear 1.25s infinite;
+      animation-play-state: running;
+    }
+
+    .node-breathe {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: sk-breathe 2.40s ease-in-out 1.20s infinite alternate;
+      animation-play-state: running;
+    }
+
+    @keyframes sk-draw-arc {
+      to { stroke-dashoffset: 0; }
+    }
+
+    @keyframes sk-reveal-monogram {
+      0% {
+        opacity: 0;
+        transform: scale(0.93) translateY(6px);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    @keyframes sk-node-pop {
+      0% {
+        opacity: 0;
+        transform: scale(0.2);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes sk-pixel-in {
+      0% {
+        opacity: 0;
+        transform: scale(0.2);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes sk-pixel-zoom {
+      0% {
+        transform: scale(0.72);
+        opacity: 0.68;
+      }
+      100% {
+        transform: scale(1.26);
+        opacity: 1;
+        filter: brightness(1.18);
+      }
+    }
+
+    @keyframes sk-bubble-zoom {
+      0% {
+        transform: scale(0.66);
+        opacity: 0.62;
+      }
+      100% {
+        transform: scale(1.34);
+        opacity: 1;
+        filter: brightness(1.2);
+      }
+    }
+
+    @keyframes sk-flow-s {
+      0% { stroke-dashoffset: 266; opacity: 0; }
+      12% { opacity: 1; }
+      85% { opacity: 1; }
+      100% { stroke-dashoffset: 0; opacity: 0; }
+    }
+
+    @keyframes sk-flow-k {
+      0% { stroke-dashoffset: 222; opacity: 0; }
+      12% { opacity: 1; }
+      85% { opacity: 1; }
+      100% { stroke-dashoffset: 0; opacity: 0; }
+    }
+
+    @keyframes sk-flow-top {
+      0% { stroke-dashoffset: 163; opacity: 0; }
+      15% { opacity: 1; }
+      85% { opacity: 1; }
+      100% { stroke-dashoffset: 0; opacity: 0; }
+    }
+
+    @keyframes sk-breathe {
+      0% { transform: scale(1); filter: brightness(1); }
+      100% { transform: scale(1.16); filter: brightness(1.25); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .cloud-left-arc, .cloud-right-arc, .circuit-trace-draw { stroke-dashoffset: 0 !important; }
+      .sk-letter-group, .circuit-node-pop, .pixel-cube { opacity: 1 !important; transform: none !important; }
+      .data-pulse-s, .data-pulse-k, .data-pulse-top { display: none !important; }
+      * { animation: none !important; }
+    }
+  ]]></style>
+
+  <!-- ========================================================================
+       LAYER 1: CLOUD OUTER ARCS (Left/Top Peak and Right Bracket)
+       ======================================================================== -->
+  <g fill="none" stroke="url(#sk-brand-grad)" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Left and Top Cloud Dome Arc -->
+    <path class="cloud-left-arc" stroke-width="14.5"
+      d="M 56 244 A 52 52 0 0 1 65 151 A 56 56 0 0 1 132 104 A 74 74 0 0 1 264 94" />
+
+    <!-- Right Cloud Bracket Arc -->
+    <path class="cloud-right-arc" stroke-width="14.5"
+      d="M 321 153 A 54 54 0 0 1 334 244" />
+  </g>
+
+  <!-- ========================================================================
+       LAYER 2: TOP CIRCUIT PEAK AND BOTTOM CIRCUIT TAIL
+       ======================================================================== -->
+  <g>
+    <!-- Top Peak Diagonal Circuit Trace -->
+    <path class="circuit-trace-draw" fill="none" stroke="url(#sk-brand-grad)" stroke-width="6.5"
+      stroke-linecap="round" stroke-linejoin="round"
+      d="M 162 135 L 204 94 L 249 134" />
+
+    <!-- Glowing Data Pulse on Top Peak -->
+    <path class="data-pulse-top" fill="none" stroke="#99FFF5" stroke-width="4"
+      stroke-linecap="round" stroke-linejoin="round" filter="url(#sk-pulse-glow)"
+      d="M 162 135 L 204 94 L 249 134" />
+
+    <!-- Top Peak Nodes -->
+    <g class="circuit-node-pop">
+      <circle class="node-breathe" cx="204" cy="94" r="11" fill="#1CF5E0" />
+      <circle class="bubble-zoom" style="--delay: 0.95s; --dur: 2.30s" cx="253" cy="136" r="8.5" fill="#19B5F8" />
+      <!-- Region 1: Decorative floating bubbles inside top-left and top-right dome -->
+      <circle class="bubble-zoom" style="--delay: 0.85s; --dur: 2.00s" cx="155" cy="113" r="6" fill="#1CF5E0" />
+      <circle class="bubble-zoom" style="--delay: 1.15s; --dur: 2.40s" cx="171" cy="94" r="3.4" fill="#1CF5E0" />
+      <circle class="bubble-zoom" style="--delay: 1.05s; --dur: 1.90s" cx="254" cy="112" r="3" fill="#1CF5E0" />
+    </g>
+
+    <!-- Bottom Circuit Trace extending from K Stem -->
+    <path class="circuit-trace-draw" fill="none" stroke="url(#sk-vert-grad)" stroke-width="6"
+      stroke-linecap="round" stroke-linejoin="round"
+      d="M 204 248 L 177 276 L 138 276" />
+    <g class="circuit-node-pop">
+      <circle class="node-breathe" cx="136" cy="276" r="10.5" fill="#7A4DF2" />
+    </g>
+  </g>
+
+  <!-- ========================================================================
+       LAYER 3: STYLIZED "SK" MONOGRAM AND INTERNAL CIRCUIT CHANNELS
+       ======================================================================== -->
+  <g class="sk-letter-group">
+    <!-- BOLD GEOMETRIC "S" -->
+    <path fill="url(#sk-brand-grad)"
+      d="M 197 132 L 132 132 C 102 132 84 148 84 171 C 84 195 103 209 132 209 L 146 209 C 161 209 169 216 169 226 C 169 236 161 243 146 243 L 92 243 L 68 267 L 146 267 C 178 267 196 250 196 226 C 196 201 177 186 146 186 L 132 186 C 117 186 110 180 110 171 C 110 162 117 156 132 156 L 173 156 Z" />
+
+    <!-- Dark Navy Recessed Channel inside "S" -->
+    <path fill="none" stroke="#071024" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"
+      d="M 156 144 L 132 144 C 109 144 97 155 97 171 C 97 187 109 197 132 197 L 146 197 C 170 197 182 209 182 226 C 182 243 170 255 146 255 L 106 255" />
+
+    <!-- Glowing Circuit Trace inside "S" Channel -->
+    <path fill="none" stroke="url(#sk-brand-grad)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"
+      d="M 156 144 L 132 144 C 109 144 97 155 97 171 C 97 187 109 197 132 197 L 146 197 C 170 197 182 209 182 226 C 182 243 170 255 146 255 L 106 255" />
+
+    <!-- Animated Data Pulse traveling through "S" -->
+    <path class="data-pulse-s" fill="none" stroke="#99FFF5" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"
+      filter="url(#sk-pulse-glow)"
+      d="M 156 144 L 132 144 C 109 144 97 155 97 171 C 97 187 109 197 132 197 L 146 197 C 170 197 182 209 182 226 C 182 243 170 255 146 255 L 106 255" />
+
+    <!-- Terminal Rings on "S" Circuit -->
+    <circle cx="160" cy="144" r="5.5" fill="#071024" stroke="#1CF5E0" stroke-width="2.6" />
+    <circle cx="103" cy="255" r="5.5" fill="#071024" stroke="#536DF4" stroke-width="2.6" />
+
+    <!-- BOLD GEOMETRIC "K" -->
+    <!-- K Vertical Left Stem -->
+    <path fill="url(#sk-brand-grad)" d="M 204 132 L 231 132 L 231 267 L 204 267 Z" />
+
+    <!-- K Angled Upper and Lower Chevron Arms -->
+    <path fill="url(#sk-brand-grad)"
+      d="M 284 132 L 320 132 L 258 197 L 320 267 L 284 267 L 232 206 L 232 188 Z" />
+
+    <!-- Dark Navy Recessed Channels inside "K" -->
+    <path fill="none" stroke="#071024" stroke-width="6.2" stroke-linecap="round" stroke-linejoin="round"
+      d="M 217.5 156 L 217.5 243" />
+    <path fill="none" stroke="#071024" stroke-width="6.2" stroke-linecap="round" stroke-linejoin="round"
+      d="M 286 149 L 241 197 L 286 249" />
+    <path fill="none" stroke="#071024" stroke-width="5.5" stroke-linecap="round"
+      d="M 218 197 L 241 197" />
+
+    <!-- Glowing Circuit Lines inside "K" -->
+    <path fill="none" stroke="url(#sk-vert-grad)" stroke-width="2.5" stroke-linecap="round"
+      d="M 217.5 156 L 217.5 243" />
+    <path fill="none" stroke="url(#sk-brand-grad)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+      d="M 286 149 L 241 197 L 286 249" />
+    <path fill="none" stroke="#1296F5" stroke-width="2.5" stroke-linecap="round"
+      d="M 218 197 L 241 197" />
+
+    <!-- Animated Data Pulse traveling through "K" -->
+    <path class="data-pulse-k" fill="none" stroke="#99FFF5" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"
+      filter="url(#sk-pulse-glow)"
+      d="M 286 149 L 241 197 L 286 249" />
+
+    <!-- Terminal Rings on "K" -->
+    <circle cx="217.5" cy="153" r="5.2" fill="#071024" stroke="#1CF5E0" stroke-width="2.5" />
+    <circle cx="217.5" cy="245" r="5.2" fill="#071024" stroke="#5D5DF3" stroke-width="2.5" />
+    <circle cx="288" cy="147" r="5.2" fill="#071024" stroke="#18B9F7" stroke-width="2.5" />
+    <circle cx="288" cy="251" r="5.2" fill="#071024" stroke="#7A4DF2" stroke-width="2.5" />
+
+    <!-- Horizontal Circuit Arm extending right from K vertex -->
+    <path fill="none" stroke="url(#sk-brand-grad)" stroke-width="5.5" stroke-linecap="round"
+      d="M 258 197 L 315 197" />
+    <circle class="node-breathe" cx="322" cy="197" r="10.5" fill="#5D64F4" />
+  </g>
+
+  <!-- ========================================================================
+       LAYER 4: LEFT AND RIGHT CIRCUIT ACCENTS (Traces and Micro-Nodes)
+       ======================================================================== -->
+  <g class="circuit-node-pop">
+    <!-- Left-side diagonal trace and terminal ring near S -->
+    <path fill="none" stroke="#1296F5" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"
+      d="M 67 197 L 76 197 L 101 224 L 143 224" />
+    <circle cx="146" cy="224" r="5.2" fill="#071024" stroke="#1296F5" stroke-width="2.5" />
+
+    <!-- Region 3: Bottom-left micro-dot grid and rounded square inside left cloud curve -->
+    <rect class="bubble-zoom" style="--delay: 0.80s; --dur: 2.30s" x="55" y="176" width="11" height="11" rx="2.8" fill="#1CF5E0" />
+    <circle class="bubble-zoom" style="--delay: 0.92s; --dur: 1.85s" cx="46" cy="198" r="3.4" fill="#16C4F7" />
+    <circle class="bubble-zoom" style="--delay: 1.04s; --dur: 2.10s" cx="46" cy="213" r="3.4" fill="#1296F5" />
+    <circle class="bubble-zoom" style="--delay: 1.16s; --dur: 1.95s" cx="59" cy="213" r="3.4" fill="#1296F5" />
+    <circle class="bubble-zoom" style="--delay: 1.28s; --dur: 2.25s" cx="71" cy="213" r="3.4" fill="#1296F5" />
+    <circle class="bubble-zoom" style="--delay: 1.40s; --dur: 1.90s" cx="71" cy="227" r="3.4" fill="#2A7CF4" />
+    <circle class="bubble-zoom" style="--delay: 1.52s; --dur: 2.15s" cx="83" cy="227" r="3.4" fill="#2A7CF4" />
+
+    <!-- Center bubble between S and K -->
+    <circle class="bubble-zoom" style="--delay: 1.00s; --dur: 2.40s" cx="187" cy="173" r="6.2" fill="#17B9F7" />
+
+    <!-- Region 4: Bottom-right scattered bubbles around K and inside right cloud bracket -->
+    <circle class="bubble-zoom" style="--delay: 0.88s; --dur: 2.20s" cx="302" cy="179" r="5.2" fill="#249CF5" />
+    <circle class="bubble-zoom" style="--delay: 1.08s; --dur: 1.80s" cx="321" cy="177" r="3" fill="#467BF4" />
+    <circle class="bubble-zoom" style="--delay: 1.24s; --dur: 2.05s" cx="301" cy="214" r="3.5" fill="#6758F3" />
+    <circle class="bubble-zoom" style="--delay: 0.98s; --dur: 2.35s" cx="315" cy="228" r="5.2" fill="#7052F3" />
+    <circle class="bubble-zoom" style="--delay: 1.36s; --dur: 1.95s" cx="332" cy="217" r="3" fill="#7A4DF2" />
+    <circle class="bubble-zoom" style="--delay: 1.18s; --dur: 2.45s" cx="250" cy="256" r="5.5" fill="#6C55F3" />
+  </g>
+
+  <!-- ========================================================================
+       LAYER 5: TOP-RIGHT DISSOLVING DIGITAL PIXELS (Region 2)
+       ======================================================================== -->
+  <g>
+    <rect class="pixel-cube" style="--delay: 0.45s; --dur: 2.10s" x="267" y="109" width="13.5" height="13.5" rx="2.5" fill="#1CF5E0" />
+    <rect class="pixel-cube" style="--delay: 0.52s; --dur: 2.40s" x="283" y="92" width="13.5" height="13.5" rx="2.5" fill="#17C8F7" />
+    <rect class="pixel-cube" style="--delay: 0.58s; --dur: 1.95s" x="301" y="92" width="13.5" height="13.5" rx="2.5" fill="#5B5BF4" />
+    <rect class="pixel-cube" style="--delay: 0.64s; --dur: 2.30s" x="301" y="109" width="13.5" height="13.5" rx="2.5" fill="#6D53F3" />
+    <rect class="pixel-cube" style="--delay: 0.70s; --dur: 2.50s" x="316" y="72" width="15" height="15" rx="2.8" fill="#1CF5E0" />
+    <rect class="pixel-cube" style="--delay: 0.76s; --dur: 1.85s" x="292" y="72" width="8.5" height="8.5" rx="1.8" fill="#1CF5E0" />
+    <rect class="pixel-cube" style="--delay: 0.80s; --dur: 2.20s" x="319" y="111" width="8.5" height="8.5" rx="1.8" fill="#7A4DF2" />
+    <rect class="pixel-cube" style="--delay: 0.84s; --dur: 2.00s" x="338" y="94" width="8.5" height="8.5" rx="1.8" fill="#18C2F7" />
+    <rect class="pixel-cube" style="--delay: 0.88s; --dur: 2.35s" x="336" y="129" width="8.5" height="8.5" rx="1.8" fill="#7A4DF2" />
+    <circle class="pixel-cube" style="--delay: 0.60s; --dur: 1.90s" cx="255" cy="112" r="3" fill="#1CF5E0" />
+  </g>
+</svg>
