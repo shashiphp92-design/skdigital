@@ -1609,6 +1609,8 @@
         });
       });
     });
+  };
+
   /* ============================================================
      6B. BLOG CATEGORY FILTERS & LIVE SEARCH
      ============================================================ */
@@ -1866,6 +1868,212 @@
   };
 
   /* ============================================================
+     9B. FREE 3-MINUTE VIDEO AUDIT FORM SUBMISSION
+     ============================================================ */
+  const initFreeAuditForm = () => {
+    const auditForm = document.getElementById('freeAuditForm');
+    if (!auditForm) return;
+
+    auditForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const statusEl = document.getElementById('auditFormStatus');
+      const submitBtn = document.getElementById('auditSubmitBtn');
+      const originalText = submitBtn ? submitBtn.innerHTML : 'Get My Free 3-Min Video Audit';
+
+      const urlVal = document.getElementById('auditUrl')?.value?.trim() || '';
+      const contactVal = document.getElementById('auditContact')?.value?.trim() || '';
+      const focusVal = document.getElementById('auditFocus')?.value || 'Speed & Core Web Vitals';
+
+      if (!urlVal || !contactVal) {
+        if (statusEl) {
+          statusEl.style.display = 'block';
+          statusEl.className = 'form-status error';
+          statusEl.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Please provide both your Website URL and Contact Info.';
+        }
+        return;
+      }
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Submitting Request...';
+      }
+
+      try {
+        const formData = new FormData(auditForm);
+        await fetch(auditForm.action, {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+      } catch (err) {
+        console.warn('Audit form network fallback:', err);
+      }
+
+      const waMsg = encodeURIComponent(`Hi Shashi, I requested a Free 3-Minute Video Website Audit for: ${urlVal} (Focus: ${focusVal}). My contact: ${contactVal}`);
+      const waLink = `https://wa.me/917986288635?text=${waMsg}`;
+
+      if (statusEl) {
+        statusEl.style.display = 'block';
+        statusEl.className = 'form-status success';
+        statusEl.innerHTML = `
+          <strong><i class="fa-solid fa-check-circle"></i> Audit Request Received!</strong><br>
+          Shashi will record your 3-minute video analysis within 24h.<br>
+          <a href="${waLink}" target="_blank" rel="noopener" class="btn btn-whatsapp" style="margin-top:10px; display:inline-flex; align-items:center; gap:8px; padding:8px 16px; font-size:0.9rem;">
+            <i class="fa-brands fa-whatsapp"></i> Confirm via WhatsApp Now &rarr;
+          </a>
+        `;
+      }
+
+      auditForm.reset();
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
+      }
+
+      setTimeout(() => {
+        window.open(waLink, '_blank', 'noopener');
+      }, 1200);
+    });
+  };
+
+  /* ============================================================
+     10. MOBILE STICKY CONVERSION BAR (BLOG & SERVICE PAGES)
+     ============================================================ */
+  const initMobileStickyBar = () => {
+    const isArticleOrService = document.querySelector('article, .article-content, .page-hero');
+    if (!isArticleOrService) return;
+    if (document.getElementById('mobileStickyBar')) return;
+
+    const pageTitle = document.querySelector('h1')?.textContent?.trim() || document.title;
+    const cleanTitle = pageTitle.replace(/[\n\r]+/g, ' ').replace(/\s{2,}/g, ' ').substring(0, 55);
+    const waText = encodeURIComponent(`Hi Shashi, I was reading "${cleanTitle}" on your site and would like to ask a question / get a quote.`);
+    const waUrl = `https://wa.me/917986288635?text=${waText}`;
+
+    const bar = document.createElement('div');
+    bar.id = 'mobileStickyBar';
+    bar.className = 'mobile-sticky-bar';
+    bar.setAttribute('aria-hidden', 'true');
+    bar.innerHTML = `
+      <div class="mobile-sticky-bar-content">
+        <div class="sticky-author-badge">
+          <span class="online-indicator"></span>
+          <div class="sticky-author-text">
+            <strong>Got a question or slow site?</strong>
+            <span>Ask Shashi directly on WhatsApp</span>
+          </div>
+        </div>
+        <a href="${waUrl}" target="_blank" rel="noopener" class="btn-whatsapp-sticky" id="stickyWaBtn" aria-label="Chat with Shashi on WhatsApp">
+          <i class="fa-brands fa-whatsapp"></i> Chat Now
+        </a>
+      </div>
+    `;
+    document.body.appendChild(bar);
+
+    let isVisible = false;
+    let ticking = false;
+
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (window.innerWidth <= 768) {
+            const scrollY = window.scrollY || window.pageYOffset;
+            if (scrollY > 280) {
+              if (!isVisible) {
+                bar.classList.add('visible');
+                bar.setAttribute('aria-hidden', 'false');
+                document.body.classList.add('has-sticky-bar-visible');
+                isVisible = true;
+              }
+            } else {
+              if (isVisible) {
+                bar.classList.remove('visible');
+                bar.setAttribute('aria-hidden', 'true');
+                document.body.classList.remove('has-sticky-bar-visible');
+                isVisible = false;
+              }
+            }
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+  };
+
+  /* ============================================================
+     11. EXIT-INTENT LEAD MODAL (DESKTOP)
+     ============================================================ */
+  const initExitIntentModal = () => {
+    if (window.innerWidth < 1024) return;
+    if (sessionStorage.getItem('sk_exit_intent_shown')) return;
+
+    let modal = document.getElementById('exitIntentModal');
+    if (!modal) {
+      modal = document.createElement('div');
+      modal.id = 'exitIntentModal';
+      modal.className = 'exit-modal-overlay';
+      modal.setAttribute('role', 'dialog');
+      modal.setAttribute('aria-modal', 'true');
+      modal.setAttribute('aria-label', 'Free Project Consultation');
+      modal.innerHTML = `
+        <div class="exit-modal-card">
+          <button type="button" class="exit-modal-close" id="exitModalClose" aria-label="Close dialog">&times;</button>
+          <span class="exit-modal-badge"><i class="fa-solid fa-bolt"></i> Before You Go</span>
+          <h3>Need a Quick Technical Review or Estimate?</h3>
+          <p>Get a direct, senior-level assessment of your website speed, bug fixes, or custom MVP scope with zero sales fluff and transparent pricing.</p>
+          <div class="exit-modal-actions">
+            <a href="cost-calculator.html" class="exit-modal-btn-calc">
+              <i class="fa-solid fa-calculator"></i> Calculate Project Cost (60s Instant Quote)
+            </a>
+            <a href="https://wa.me/917986288635?text=Hi%20Shashi%2C%20I%20was%20browsing%20your%20site%20and%20wanted%20to%20ask%20a%20quick%20question%20about%20a%20project." target="_blank" rel="noopener" class="exit-modal-btn-wa">
+              <i class="fa-brands fa-whatsapp"></i> Chat with Shashi on WhatsApp
+            </a>
+          </div>
+          <div class="exit-modal-footer">
+            <button type="button" class="exit-modal-dismiss" id="exitModalDismiss">No thanks, I will continue browsing</button>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(modal);
+
+      const closeModal = () => {
+        modal.classList.remove('open');
+        sessionStorage.setItem('sk_exit_intent_shown', 'true');
+      };
+
+      modal.querySelector('#exitModalClose')?.addEventListener('click', closeModal);
+      modal.querySelector('#exitModalDismiss')?.addEventListener('click', closeModal);
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('open')) {
+          closeModal();
+        }
+      });
+    }
+
+    let hasTriggered = false;
+    const handleMouseLeave = (e) => {
+      if (hasTriggered) return;
+      if (e.clientY <= 15) {
+        hasTriggered = true;
+        modal.classList.add('open');
+        sessionStorage.setItem('sk_exit_intent_shown', 'true');
+        document.removeEventListener('mouseleave', handleMouseLeave);
+      }
+    };
+
+    setTimeout(() => {
+      document.addEventListener('mouseleave', handleMouseLeave);
+    }, 4500);
+  };
+
+  /* ============================================================
      INITIALIZE ALL SYSTEMS (IDEMPOTENT SINGLE RUN)
      ============================================================ */
   let isInitialized = false;
@@ -1883,6 +2091,9 @@
     initWhatsAppTriggers();
     initScrollReveal();
     initContactForm();
+    initFreeAuditForm();
+    initMobileStickyBar();
+    initExitIntentModal();
 
     // Auto-update copyright year
     document.querySelectorAll('[data-year]').forEach((el) => {
