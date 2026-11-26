@@ -6979,6 +6979,13 @@ body {
   position: sticky !important;
   top: 0 !important;
   z-index: 1000 !important;
+  width: 100% !important;
+  overflow: visible !important;
+}
+
+.site-header .container {
+  max-width: 1440px !important;
+  padding: 0 20px !important;
 }
 
 .nav-wrap {
@@ -6987,27 +6994,31 @@ body {
   align-items: center !important;
   justify-content: space-between !important;
   width: 100% !important;
+  gap: 12px !important;
+  box-sizing: border-box !important;
 }
 
 /* Desktop Nav Menu Links */
 .nav-menu {
   display: flex !important;
   align-items: center !important;
-  gap: 3px !important;
+  gap: 2px !important;
   background: rgba(30, 41, 59, 0.6) !important;
   border: 1px solid rgba(51, 65, 85, 0.7) !important;
-  padding: 4px 6px !important;
+  padding: 3px 5px !important;
   border-radius: 9999px !important;
   white-space: nowrap !important;
   backdrop-filter: blur(12px) !important;
+  flex-shrink: 1 !important;
 }
 
 .nav-menu a {
   color: #cbd5e1 !important;
   font-weight: 600 !important;
-  padding: 6px 12px !important;
+  padding: 5px 9px !important;
   border-radius: 9999px !important;
-  font-size: 0.85rem !important;
+  font-size: 0.81rem !important;
+  letter-spacing: -0.01em !important;
   white-space: nowrap !important;
   transition: all 0.2s ease !important;
   line-height: 1.2 !important;
@@ -7032,8 +7043,40 @@ body {
 .nav-cta {
   display: flex !important;
   align-items: center !important;
-  gap: 12px !important;
+  gap: 10px !important;
   flex-shrink: 0 !important;
+  margin-left: auto !important;
+}
+
+.nav-cta .btn {
+  white-space: nowrap !important;
+}
+
+/* Intermediate Laptop Breakpoint: 1025px - 1280px */
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .site-header .container {
+    padding: 0 14px !important;
+  }
+  .nav-wrap {
+    gap: 8px !important;
+  }
+  .nav-cta .btn-outline {
+    display: none !important; /* Hides secondary 'Hire Me' to ensure WhatsApp button never clips on laptops */
+  }
+  .nav-menu a {
+    padding: 4px 7px !important;
+    font-size: 0.78rem !important;
+  }
+  .logo .logo-img {
+    width: 48px !important;
+    height: 48px !important;
+  }
+  .logo-text .brand-title {
+    font-size: 1.05rem !important;
+  }
+  .logo-text .brand-sub {
+    font-size: 0.72rem !important;
+  }
 }
 
 .nav-cta .nav-quote-btn {
