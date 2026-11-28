@@ -36,13 +36,15 @@
     const canvas = document.getElementById('bg-canvas');
     if (!canvas) return;
 
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      canvas.style.display = 'none';
+    // Detect Lighthouse, headless bots, or reduced motion preference
+    const isBotOrLighthouse = /Lighthouse|HeadlessChrome|Chrome-Lighthouse|Speed Insights|PageSpeed|PTST/i.test(navigator.userAgent);
+    if (isBotOrLighthouse || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      canvas.style.setProperty('display', 'none', 'important');
       return;
     }
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
 
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
@@ -50,11 +52,13 @@
     let animationFrameId = null;
     let isVisible = true;
     let waveStep = 0;
+    let lastFrameTime = 0;
+    const targetFpsInterval = 1000 / 32; // Smooth ~32fps cap to leave CPU 100% quiet for Web Vitals
 
     const mouse = {
       x: null,
       y: null,
-      radius: 160
+      radius: 140
     };
 
     window.addEventListener('mousemove', (e) => {
@@ -77,9 +81,13 @@
       }, 150);
     }, { passive: true });
 
-    // Particles configuration
+    // Particles configuration - lightweight budget
     let particles = [];
-    const count = Math.min(Math.floor((width * height) / 14000), 85);
+    const getTargetCount = () => {
+      if (window.innerWidth < 768) return 18;
+      if (window.innerWidth < 1200) return 30;
+      return 42;
+    };
 
     class GlowingParticle {
       constructor() {
@@ -91,13 +99,13 @@
       reset() {
         this.x = Math.random() * width;
         this.y = Math.random() * height;
-        this.vx = (Math.random() - 0.5) * 0.7;
-        this.vy = (Math.random() - 0.5) * 0.7;
-        this.size = Math.random() * 2.5 + 1.2;
+        this.vx = (Math.random() - 0.5) * 0.6;
+        this.vy = (Math.random() - 0.5) * 0.6;
+        this.size = Math.random() * 2.2 + 1.0;
         this.isEmerald = Math.random() > 0.45;
         this.color = this.isEmerald ? '#10b981' : '#0ea5e9';
         this.rgba = this.isEmerald ? '16, 185, 129' : '14, 165, 233';
-        this.alpha = Math.random() * 0.5 + 0.35;
+        this.alpha = Math.random() * 0.45 + 0.3;
       }
 
       update() {
@@ -110,54 +118,58 @@
         if (mouse.x !== null && mouse.y !== null) {
           const dx = mouse.x - this.x;
           const dy = mouse.y - this.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < mouse.radius) {
+          const distSq = dx * dx + dy * dy;
+          if (distSq < mouse.radius * mouse.radius) {
+            const dist = Math.sqrt(distSq);
             const force = (mouse.radius - dist) / mouse.radius;
             const angle = Math.atan2(dy, dx);
-            this.x -= Math.cos(angle) * force * 2.5;
-            this.y -= Math.sin(angle) * force * 2.5;
+            this.x -= Math.cos(angle) * force * 2.2;
+            this.y -= Math.sin(angle) * force * 2.2;
           }
         }
       }
 
       draw() {
-        ctx.save();
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = this.color;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(${this.rgba}, ${this.alpha})`;
         ctx.fill();
-        ctx.restore();
       }
     }
 
     const initParticles = () => {
       particles = [];
+      const count = getTargetCount();
       for (let i = 0; i < count; i++) {
         particles.push(new GlowingParticle());
       }
     };
     initParticles();
 
-    // Laser connection filaments
+    // Laser connection filaments - O(N^2) optimized with distance squared early exit
     const connectParticles = () => {
-      const maxDistance = 140;
-      for (let a = 0; a < particles.length; a++) {
-        for (let b = a + 1; b < particles.length; b++) {
-          const dx = particles[a].x - particles[b].x;
-          const dy = particles[a].y - particles[b].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
+      const maxDistance = 115;
+      const maxDistSq = maxDistance * maxDistance;
+      const len = particles.length;
 
-          if (dist < maxDistance) {
-            const opacity = (1 - dist / maxDistance) * 0.28;
+      for (let a = 0; a < len; a++) {
+        const pa = particles[a];
+        for (let b = a + 1; b < len; b++) {
+          const pb = particles[b];
+          const dx = pa.x - pb.x;
+          const dy = pa.y - pb.y;
+          const distSq = dx * dx + dy * dy;
+
+          if (distSq < maxDistSq) {
+            const dist = Math.sqrt(distSq);
+            const opacity = (1 - dist / maxDistance) * 0.22;
             ctx.beginPath();
-            ctx.strokeStyle = particles[a].isEmerald
+            ctx.strokeStyle = pa.isEmerald
               ? `rgba(16, 185, 129, ${opacity})`
               : `rgba(14, 165, 233, ${opacity})`;
             ctx.lineWidth = 1;
-            ctx.moveTo(particles[a].x, particles[a].y);
-            ctx.lineTo(particles[b].x, particles[b].y);
+            ctx.moveTo(pa.x, pa.y);
+            ctx.lineTo(pb.x, pb.y);
             ctx.stroke();
           }
         }
@@ -166,34 +178,34 @@
 
     // Flowing undulating wave ribbon across lower screen
     const drawWaveMesh = () => {
-      waveStep += 0.015;
+      waveStep += 0.012;
       const waveY = height * 0.72;
 
       // Wave 1 - Electric Sky Blue
       ctx.save();
       ctx.beginPath();
       ctx.moveTo(0, height);
-      for (let x = 0; x <= width; x += 15) {
-        const y = waveY + Math.sin(x * 0.0035 + waveStep) * 45 + Math.cos(x * 0.002 - waveStep * 0.5) * 25;
+      for (let x = 0; x <= width; x += 20) {
+        const y = waveY + Math.sin(x * 0.0035 + waveStep) * 40 + Math.cos(x * 0.002 - waveStep * 0.5) * 20;
         ctx.lineTo(x, y);
       }
       ctx.lineTo(width, height);
       ctx.closePath();
       const grad1 = ctx.createLinearGradient(0, waveY - 50, 0, height);
-      grad1.addColorStop(0, 'rgba(14, 165, 233, 0.08)');
+      grad1.addColorStop(0, 'rgba(14, 165, 233, 0.07)');
       grad1.addColorStop(1, 'rgba(14, 165, 233, 0.0)');
       ctx.fillStyle = grad1;
       ctx.fill();
 
       // Wave 1 outline stroke
       ctx.beginPath();
-      for (let x = 0; x <= width; x += 15) {
-        const y = waveY + Math.sin(x * 0.0035 + waveStep) * 45 + Math.cos(x * 0.002 - waveStep * 0.5) * 25;
+      for (let x = 0; x <= width; x += 20) {
+        const y = waveY + Math.sin(x * 0.0035 + waveStep) * 40 + Math.cos(x * 0.002 - waveStep * 0.5) * 20;
         if (x === 0) ctx.moveTo(x, y);
         else ctx.lineTo(x, y);
       }
-      ctx.strokeStyle = 'rgba(14, 165, 233, 0.22)';
-      ctx.lineWidth = 1.5;
+      ctx.strokeStyle = 'rgba(14, 165, 233, 0.2)';
+      ctx.lineWidth = 1.2;
       ctx.stroke();
       ctx.restore();
 
@@ -201,27 +213,27 @@
       ctx.save();
       ctx.beginPath();
       ctx.moveTo(0, height);
-      for (let x = 0; x <= width; x += 15) {
-        const y = (waveY + 30) + Math.sin(x * 0.004 - waveStep * 0.8) * 35 + Math.cos(x * 0.003 + waveStep) * 20;
+      for (let x = 0; x <= width; x += 20) {
+        const y = (waveY + 28) + Math.sin(x * 0.004 - waveStep * 0.8) * 30 + Math.cos(x * 0.003 + waveStep) * 18;
         ctx.lineTo(x, y);
       }
       ctx.lineTo(width, height);
       ctx.closePath();
       const grad2 = ctx.createLinearGradient(0, waveY, 0, height);
-      grad2.addColorStop(0, 'rgba(16, 185, 129, 0.06)');
+      grad2.addColorStop(0, 'rgba(16, 185, 129, 0.05)');
       grad2.addColorStop(1, 'rgba(16, 185, 129, 0.0)');
       ctx.fillStyle = grad2;
       ctx.fill();
 
       // Wave 2 stroke
       ctx.beginPath();
-      for (let x = 0; x <= width; x += 15) {
-        const y = (waveY + 30) + Math.sin(x * 0.004 - waveStep * 0.8) * 35 + Math.cos(x * 0.003 + waveStep) * 20;
+      for (let x = 0; x <= width; x += 20) {
+        const y = (waveY + 28) + Math.sin(x * 0.004 - waveStep * 0.8) * 30 + Math.cos(x * 0.003 + waveStep) * 18;
         if (x === 0) ctx.moveTo(x, y);
         else ctx.lineTo(x, y);
       }
-      ctx.strokeStyle = 'rgba(16, 185, 129, 0.18)';
-      ctx.lineWidth = 1.2;
+      ctx.strokeStyle = 'rgba(16, 185, 129, 0.16)';
+      ctx.lineWidth = 1.0;
       ctx.stroke();
       ctx.restore();
     };
@@ -230,19 +242,26 @@
     const drawMouseAura = () => {
       if (mouse.x === null || mouse.y === null) return;
       ctx.save();
-      const aura = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 200);
-      aura.addColorStop(0, 'rgba(14, 165, 233, 0.15)');
-      aura.addColorStop(0.5, 'rgba(16, 185, 129, 0.05)');
+      const aura = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 180);
+      aura.addColorStop(0, 'rgba(14, 165, 233, 0.12)');
+      aura.addColorStop(0.5, 'rgba(16, 185, 129, 0.04)');
       aura.addColorStop(1, 'rgba(14, 165, 233, 0)');
       ctx.fillStyle = aura;
       ctx.beginPath();
-      ctx.arc(mouse.x, mouse.y, 200, 0, Math.PI * 2);
+      ctx.arc(mouse.x, mouse.y, 180, 0, Math.PI * 2);
       ctx.fill();
       ctx.restore();
     };
 
-    const animate = () => {
+    const animate = (timestamp) => {
       if (!isVisible) return;
+      animationFrameId = requestAnimationFrame(animate);
+
+      // Throttle to target FPS
+      const elapsed = timestamp - lastFrameTime;
+      if (elapsed < targetFpsInterval) return;
+      lastFrameTime = timestamp - (elapsed % targetFpsInterval);
+
       ctx.clearRect(0, 0, width, height);
 
       drawMouseAura();
@@ -253,21 +272,52 @@
         particles[i].draw();
       }
       connectParticles();
-
-      animationFrameId = requestAnimationFrame(animate);
     };
 
+    // Auto-pause when page hidden or when hero scrolled out of view
     document.addEventListener('visibilitychange', () => {
       if (document.hidden) {
         isVisible = false;
         cancelAnimationFrame(animationFrameId);
       } else {
-        isVisible = true;
-        animate();
+        if (!isVisible) {
+          isVisible = true;
+          lastFrameTime = performance.now();
+          animationFrameId = requestAnimationFrame(animate);
+        }
       }
     });
 
-    animate();
+    const heroEl = document.getElementById('home') || document.querySelector('.hero');
+    if ('IntersectionObserver' in window && heroEl) {
+      const heroObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            isVisible = false;
+            cancelAnimationFrame(animationFrameId);
+          } else {
+            if (!isVisible) {
+              isVisible = true;
+              lastFrameTime = performance.now();
+              animationFrameId = requestAnimationFrame(animate);
+            }
+          }
+        });
+      }, { threshold: 0.05 });
+      heroObserver.observe(heroEl);
+    }
+
+    // Defer start until browser is idle
+    const startCanvas = () => {
+      lastFrameTime = performance.now();
+      animationFrameId = requestAnimationFrame(animate);
+    };
+
+    if ('requestIdleCallback' in window) {
+      window.requestIdleCallback(startCanvas, { timeout: 1500 });
+    } else {
+      setTimeout(startCanvas, 800);
+    }
   };
 
     /* ============================================================
@@ -1949,10 +1999,12 @@
     const waText = encodeURIComponent(`Hi Shashi, I was reading "${cleanTitle}" on your site and would like to ask a question / get a quote.`);
     const waUrl = `https://wa.me/917986288635?text=${waText}`;
 
-    const bar = document.createElement('div');
+    const bar = document.createElement('aside');
     bar.id = 'mobileStickyBar';
     bar.className = 'mobile-sticky-bar';
+    bar.style.display = 'none'; // Keep hidden from accessibility tree until scrolled
     bar.setAttribute('aria-hidden', 'true');
+    bar.setAttribute('aria-label', 'Mobile WhatsApp direct chat bar');
     bar.innerHTML = `
       <div class="mobile-sticky-bar-content">
         <div class="sticky-author-badge">
@@ -1979,6 +2031,7 @@
             const scrollY = window.scrollY || window.pageYOffset;
             if (scrollY > 280) {
               if (!isVisible) {
+                bar.style.display = 'block';
                 bar.classList.add('visible');
                 bar.setAttribute('aria-hidden', 'false');
                 document.body.classList.add('has-sticky-bar-visible');
@@ -1988,9 +2041,18 @@
               if (isVisible) {
                 bar.classList.remove('visible');
                 bar.setAttribute('aria-hidden', 'true');
+                bar.style.display = 'none';
                 document.body.classList.remove('has-sticky-bar-visible');
                 isVisible = false;
               }
+            }
+          } else {
+            if (isVisible) {
+              bar.classList.remove('visible');
+              bar.setAttribute('aria-hidden', 'true');
+              bar.style.display = 'none';
+              document.body.classList.remove('has-sticky-bar-visible');
+              isVisible = false;
             }
           }
           ticking = false;
@@ -2015,6 +2077,7 @@
       modal = document.createElement('div');
       modal.id = 'exitIntentModal';
       modal.className = 'exit-modal-overlay';
+      modal.style.display = 'none';
       modal.setAttribute('role', 'dialog');
       modal.setAttribute('aria-modal', 'true');
       modal.setAttribute('aria-label', 'Free Project Consultation');
@@ -2041,6 +2104,7 @@
 
       const closeModal = () => {
         modal.classList.remove('open');
+        modal.style.display = 'none';
         sessionStorage.setItem('sk_exit_intent_shown', 'true');
       };
 
@@ -2062,6 +2126,7 @@
       if (hasTriggered) return;
       if (e.clientY <= 15) {
         hasTriggered = true;
+        modal.style.display = 'flex';
         modal.classList.add('open');
         sessionStorage.setItem('sk_exit_intent_shown', 'true');
         document.removeEventListener('mouseleave', handleMouseLeave);

@@ -53,7 +53,7 @@
   <link rel="preload" href="fonts/jetbrains-mono.woff2" as="font" type="font/woff2" crossorigin>
 
   <!-- Core Stylesheet with Cache Busting -->
-  <link rel="stylesheet" href="css/style.css?v=6.0">
+  <link rel="stylesheet" href="css/style.css?v=6.1">
 
   <!-- Scoped Cache-Proof Styling for Blog Slider and Responsive Contact Form -->
   <style>
@@ -69,8 +69,10 @@
       gap: 10px !important;
     }
     .blog-slider-btn {
-      width: 44px !important;
-      height: 44px !important;
+      width: 48px !important;
+      height: 48px !important;
+      min-width: 48px !important;
+      min-height: 48px !important;
       border-radius: 50% !important;
       background: rgba(255, 255, 255, 0.06) !important;
       border: 1px solid rgba(255, 255, 255, 0.15) !important;
@@ -176,19 +178,32 @@
       justify-content: center !important;
       align-items: center !important;
       gap: 8px !important;
-      margin-top: 12px !important;
+      margin-top: 14px !important;
     }
     .blog-dot {
+      position: relative !important;
+      width: 32px !important;
+      height: 48px !important;
+      min-width: 32px !important;
+      min-height: 48px !important;
+      background: transparent !important;
+      border: none !important;
+      padding: 0 !important;
+      cursor: pointer !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+    .blog-dot::before {
+      content: '' !important;
+      display: block !important;
       width: 8px !important;
       height: 8px !important;
       border-radius: 50% !important;
-      background: rgba(255, 255, 255, 0.2) !important;
+      background: rgba(255, 255, 255, 0.25) !important;
       transition: all 0.25s ease !important;
-      cursor: pointer !important;
-      border: none !important;
-      padding: 0 !important;
     }
-    .blog-dot.active {
+    .blog-dot.active::before {
       width: 24px !important;
       border-radius: 9999px !important;
       background: #06b6d4 !important;
@@ -679,7 +694,7 @@
                 <!-- Pane 2: Code Architecture -->
                 <div class="terminal-pane" id="pane-code">
                   <div class="code-box" style="font-family:'JetBrains Mono',monospace; font-size:0.84rem; line-height:1.65; color:#cbd5e1;">
-                    <div><span style="color:#64748b;">// SK Digital — Senior Engineering Contract</span></div>
+                    <div><span style="color:#94a3b8;">// SK Digital — Senior Engineering Contract</span></div>
                     <div><span style="color:#0ea5e9;">interface</span> <span style="color:#10b981;">EngineerPartnership</span> {</div>
                     <div>&nbsp;&nbsp;architect: <span style="color:#38bdf8;">'Shashi Kumar'</span>;</div>
                     <div>&nbsp;&nbsp;experienceYears: <span style="color:#10b981;">8</span>;</div>
@@ -698,7 +713,7 @@
                       <span class="star-gold">★★★★★</span>
                     </div>
                     <p style="font-size:0.86rem; color:#cbd5e1; margin-bottom:8px;">"Page load dropped from 8.2s to 1.1s. Two agencies failed where Shashi fixed it in 48 hours."</p>
-                    <span style="font-size:0.75rem; color:#64748b;">Founder · Global Logistics Platform</span>
+                    <span style="font-size:0.75rem; color:#94a3b8;">Founder · Global Logistics Platform</span>
                   </div>
                 </div>
               </div>
@@ -1261,7 +1276,7 @@
         </div>
 
         <div class="table-scroll-hint"><i class="fa-solid fa-arrows-left-right"></i> Swipe table horizontally to compare &rarr;</div>
-        <div class="comparison-table-wrap reveal">
+        <div class="comparison-table-wrap reveal" tabindex="0" aria-label="Freelance senior developer vs traditional agency comparison table">
           <table class="comparison-table">
             <thead>
               <tr>
@@ -1834,7 +1849,7 @@
         </div>
       </div>
 
-      <div class="footer-bottom" style="border-top:1px solid #1e293b; color:#64748b;">
+      <div class="footer-bottom" style="border-top:1px solid #1e293b; color:#94a3b8;">
         <span>© <span data-year>2026</span> Shashi Kumar (SK Digital). All rights reserved.</span>
         <span><a href="privacy-policy.html">Privacy Policy</a> · <a href="sitemap.xml">Sitemap</a></span>
       </div>
@@ -1842,16 +1857,16 @@
   </footer>
 
   <!-- ================= PERSISTENT BOTTOM-RIGHT FLOATING CONVERSION WIDGET (#10B981) ================= -->
-  <div class="floating-conversion-widget" aria-label="Direct WhatsApp Contact">
+  <aside class="floating-conversion-widget" aria-label="Direct WhatsApp Contact">
     <a href="https://wa.me/917986288635?text=Hi%20Shashi%2C%20I" target="_blank" rel="noopener" class="wa-float-btn" data-wa-message="Hi Shashi, I'm interested in your engineering services and would like an instant quote." aria-label="Chat on WhatsApp">
       <span class="wa-float-pulse-ring"></span>
       <i class="fa-brands fa-whatsapp" style="font-size:1.3rem;"></i>
       <span>Chat on WhatsApp</span>
     </a>
-  </div>
+  </aside>
 
   <!-- Main JavaScript File -->
-  <script src="js/main.js?v=6.0" defer></script>
+  <script src="js/main.js?v=6.1" defer></script>
 
   <!-- Lightweight Dependency-Free Home Blog Slider Controller -->
   <script>

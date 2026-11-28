@@ -303,6 +303,7 @@ section[id], div[id] {
   justify-content: center;
   gap: 10px;
   padding: 13px 26px;
+  min-height: 48px;
   border-radius: var(--radius-full);
   font-family: var(--font-body);
   font-weight: 600;
@@ -1991,7 +1992,7 @@ section[id], div[id] {
 /* ---------- Footer ---------- */
 .site-footer {
   background: #05080e;
-  color: var(--text-muted);
+  color: #94a3b8;
   padding: 64px 0 0;
   border-top: 1px solid var(--border-subtle);
   position: relative;
@@ -2042,6 +2043,10 @@ section[id], div[id] {
   align-items: flex-start;
 }
 
+.site-footer .contact-list span {
+  color: #94a3b8;
+}
+
 .site-footer .contact-list i {
   color: var(--brand-cyan);
   margin-top: 4px;
@@ -2056,7 +2061,7 @@ section[id], div[id] {
   flex-wrap: wrap;
   gap: 12px;
   font-size: 0.88rem;
-  color: var(--text-muted);
+  color: #94a3b8;
 }
 
 .footer-bottom a {
@@ -2775,7 +2780,7 @@ section[id], div[id] {
 }
 .blog-read-time {
   font-size: 0.8rem;
-  color: var(--text-muted);
+  color: #94a3b8;
   display: inline-flex;
   align-items: center;
   gap: 5px;
@@ -4792,9 +4797,9 @@ section[id], div[id] {
 .section-light .section-header .eyebrow,
 .pricing-section-light .section-header .eyebrow,
 .faq-section-light .section-header .eyebrow {
-  color: #0284c7 !important;
+  color: #0369a1 !important;
   background: rgba(14, 165, 233, 0.1) !important;
-  border-color: rgba(14, 165, 233, 0.3) !important;
+  border-color: rgba(3, 105, 161, 0.3) !important;
 }
 
 .section-light .section-header h2,
@@ -5873,7 +5878,7 @@ section[id], div[id] {
   top: -14px;
   left: 50%;
   transform: translateX(-50%);
-  background: #10b981;
+  background: #047857;
   color: #ffffff;
   font-size: 0.75rem;
   font-weight: 800;
@@ -5881,7 +5886,7 @@ section[id], div[id] {
   text-transform: uppercase;
   padding: 5px 16px;
   border-radius: var(--radius-full);
-  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+  box-shadow: 0 4px 12px rgba(4, 120, 87, 0.4);
 }
 
 .pricing-card.enterprise {
@@ -5946,13 +5951,17 @@ section[id], div[id] {
 }
 
 .pricing-card.featured .price-amount {
-  color: #10b981;
+  color: #047857;
 }
 
 .price-period {
   font-size: 0.85rem;
-  color: #64748b;
+  color: #475569;
   margin-left: 4px;
+}
+
+.pricing-card.enterprise .price-period {
+  color: #94a3b8;
 }
 
 .pricing-feature-list {
@@ -6048,7 +6057,7 @@ section[id], div[id] {
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: #059669;
+  color: #047857;
   background: #ecfdf5;
   border: 1px solid #a7f3d0;
   padding: 4px 12px;
@@ -6137,10 +6146,10 @@ section[id], div[id] {
 
 .mono-filter-btn.active,
 .mono-filter-btn:hover {
-  background: #0ea5e9;
-  border-color: #0ea5e9;
+  background: #0369a1;
+  border-color: #0369a1;
   color: #ffffff;
-  box-shadow: 0 2px 12px rgba(14, 165, 233, 0.4);
+  box-shadow: 0 2px 12px rgba(3, 105, 161, 0.4);
 }
 
 .tech-pill-grid {
@@ -6516,7 +6525,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Ensure background canvas is 100% VISIBLE, crisp and glowing */
+/* Ensure background canvas is visible, smooth and GPU-composited */
 #bg-canvas {
   position: fixed !important;
   top: 0 !important;
@@ -6526,7 +6535,13 @@ body {
   pointer-events: none !important;
   z-index: 0 !important;
   opacity: 0.95 !important;
-  display: block !important;
+  display: block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #bg-canvas {
+    display: none !important;
+  }
 }
 
 /* ============================================================
@@ -6862,12 +6877,16 @@ body {
   }
   .terminal-tabs {
     padding: 2px !important;
-    gap: 2px !important;
+    gap: 8px !important;
   }
   .terminal-tab {
-    padding: 4px 8px !important;
-    font-size: 0.74rem !important;
-    gap: 4px !important;
+    min-height: 48px !important;
+    padding: 10px 14px !important;
+    font-size: 0.78rem !important;
+    gap: 6px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 }
 
@@ -6879,8 +6898,9 @@ body {
     display: inline !important;
   }
   .terminal-tab {
-    padding: 5px 10px !important;
-    font-size: 0.76rem !important;
+    min-height: 48px !important;
+    padding: 10px 12px !important;
+    font-size: 0.78rem !important;
   }
 }
 
@@ -7268,7 +7288,7 @@ body {
   font-family: var(--font-mono, 'JetBrains Mono', monospace);
   font-size: 0.82rem;
   font-weight: 700;
-  color: #0284c7;
+  color: #0369a1;
   background: rgba(14, 165, 233, 0.1);
   border: 1px solid rgba(14, 165, 233, 0.25);
   padding: 3px 10px;
